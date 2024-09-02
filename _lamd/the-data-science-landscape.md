@@ -21,14 +21,14 @@ oldyoutube:
   year: 2022
 - code: j1MjFd_2U80
   year: 2021
-date: 2023-10-27
+date: 2024-11-01
 transition: None
 ipynb: false
 ---
 
 
 
-\include{_advds/includes/overview-2023.md}
+\include{_advds/includes/overview-2024.md}
 \include{_ai/includes/henry-ford-intro.md}
 \include{_books/includes/the-atomic-human.md}
 \include{_data-science/includes/lies-damned-lies.md}

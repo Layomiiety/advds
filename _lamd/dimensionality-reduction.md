@@ -7,7 +7,7 @@ featured_image: slides/diagrams/dimred/dem_manifold_print002.png
 layout: lecture
 venue: LT2, William Gates Building
 time: "10:00"
-date: 2023-11-10
+date: 2024-11-15
 author:
 - family: Lawrence
   given: Neil D.

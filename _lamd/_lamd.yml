@@ -20,13 +20,21 @@ snippetsdir: $HOME/lawrennd/snippets/
 writediagramsdir: .
 scriptsdir: ./scripts/
 diagramsdir: ./slides/diagrams/
-transition: None
+posts: True
+docx: False
+notespdf: False
+slidesipynb: False
+pptx: False
+pdf: False
+assignment: False
+ipynb: False
+potx: ""
 baseurl: "advds/" # the subpath of your site, e.g. /blog/
 url: "https://mlatcl.github.io/" # the base hostname & protocol for your site
 ghub:
-- organization: lawrennd
-  repository: talks
+- organization: mlatcl
+  repository: advds
   branch: gh-pages
-  directory: _advds
+  directory: _lamd
 transition: None
   

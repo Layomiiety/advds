@@ -21,7 +21,7 @@ oldyoutube:
   year: 2021
 youtube: BQKfIJHPiCQ
 time: "10:00"
-date: 2023-10-30
+date: 2024-11-04
 transition: None
 ipynb: False
 ---

@@ -13,7 +13,7 @@ author:
   institute: University of Cambridge
   url: http://carlhenrik.com/
 time: "10:00"
-date: 2023-11-15
+date: 2024-11-20
 youtube: OIrC0sCl0x4
 oldyoutube: 
 - code: OIrC0sCl0x4
