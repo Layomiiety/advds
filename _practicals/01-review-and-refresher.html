@@ -15,9 +15,23 @@ author:
   twitter: lawrennd
   gscholar: r3SJcvoAAAAJ
   orcid: 
+- given: Christian
+  family: Cabrera
+  url: https://www.cst.cam.ac.uk/people/chc79
+  institute: University of Cambridge
+  twitter: 
+  gscholar: 
+  orcid: 
+- given: Radzim
+  family: Sendyka
+  url: https://www.cst.cam.ac.uk/people/rs2071
+  institute: University of Cambridge
+  twitter: 
+  gscholar: 
+  orcid: 
 edit_url: https://github.com/mlatcl/advds/edit/gh-pages/_lamd/review-and-refresher.md
-date: 2023-10-27
-published: 2023-10-27
+date: 2024-11-01
+published: 2024-11-01
 featured_image: assets/images/review-and-refresher.png
 transition: None
 ipynb: 01-review-and-refresher.ipynb
@@ -52,6 +66,13 @@ link to doing that on the main lab page at the top. We also suggest that
 the first thing you do is click
 <code>View</code>-&gt;<code>Expand sections</code> to make all parts of
 the lab visibile.</p>
+<ul>
+<li><p>This session should prepare you for different parts of the course
+practicals and final assignment.</p></li>
+<li><p>We will use the fynesse library through the course. You will
+create your own library and will update it as the course progress. The
+library will also contain your work for the final assignment.</p></li>
+</ul>
 <p>We suggest you complete at least Exercises 4-9.</p>
 <h2 id="setup">Setup</h2>
 <div style="text-align:right">
@@ -129,7 +150,8 @@ class="uri">https://github.com/lawrennd/mlai</a></p>
 <p>Once <code>mlai</code> is installed, it can be imported in the usual
 manner.</p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
 <h1 id="nigeria-nmis-data">Nigeria NMIS Data</h1>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -217,8 +239,96 @@ registered in the NMIS data across Nigeria. Each facility plotted
 according to its latitude and longitude.</p>
 </div>
 </div>
+<h2 id="exploring-the-nmis-data">Exploring the NMIS Data</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/nigeria-nmis-data-explore.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/nigeria-nmis-data-explore.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>The NMIS facility data is stored in an object known as a ‘data
+frame’. Data frames come from the statistical family of programming
+languages based on <code>S</code>, the most widely used of which is <a
+href="http://en.wikipedia.org/wiki/R_(programming_language)"><code>R</code></a>.
+The data frame gives us a convenient object for manipulating data. The
+describe method summarizes which columns there are in the data frame and
+gives us counts, means, standard deviations and percentiles for the
+values in those columns. To access a column directly we can write</p>
 <div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hospital_data <span class="op">=</span> data</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>])</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(data[&#39;num_nurses_fulltime&#39;])</span></span></code></pre></div>
+<p>This shows the number of doctors per facility, number of nurses and
+number of community health workers (CHEWS). We can plot the number of
+doctors against the number of nurses as follows.</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># this imports the plotting library in python</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> plt.plot(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>], data[<span class="st">&#39;num_nurses_fulltime&#39;</span>], <span class="st">&#39;rx&#39;</span>)</span></code></pre></div>
+<p>You may be curious what the arguments we give to
+<code>plt.plot</code> are for, now is the perfect time to look at the
+documentation</p>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.plot?</span></code></pre></div>
+<p>We immediately note that some facilities have a lot of nurses, which
+prevent’s us seeing the detail of the main number of facilities. First
+lets identify the facilities with the most nurses.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">&#39;num_nurses_fulltime&#39;</span>]<span class="op">&gt;</span><span class="dv">100</span>]</span></code></pre></div>
+<p>Here we are using the command
+<code>data['num_nurses_fulltime']&gt;100</code> to index the facilities
+in the pandas data frame which have over 100 nurses. To sort them in
+order we can also use the <code>sort</code> command. The result of this
+command on its own is a data <code>Series</code> of <code>True</code>
+and <code>False</code> values. However, when it is passed to the
+<code>data</code> data frame it returns a new data frame which contains
+only those values for which the data series is <code>True</code>. We can
+also sort the result. To sort the result by the values in the
+<code>num_nurses_fulltime</code> column in <em>descending</em> order we
+use the following command.</p>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">&#39;num_nurses_fulltime&#39;</span>]<span class="op">&gt;</span><span class="dv">100</span>].sort_values(by<span class="op">=</span><span class="st">&#39;num_nurses_fulltime&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<p>We now see that the ‘University of Calabar Teaching Hospital’ is a
+large outlier with 513 nurses. We can try and determine how much of an
+outlier by histograming the data.</p>
+<h2 id="plotting-the-data">Plotting the Data</h2>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;num_nurses_fulltime&#39;</span>].hist(bins<span class="op">=</span><span class="dv">20</span>) <span class="co"># histogram the data with 20 bins.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Histogram of Number of Nurses&#39;</span>)</span></code></pre></div>
+<p>We can’t see very much here. Two things are happening. There are so
+many facilities with zero or one nurse that we don’t see the histogram
+for hospitals with many nurses. We can try more bins and using a
+<em>log</em> scale on the <span
+class="math inline">\(y\)</span>-axis.</p>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;num_nurses_fulltime&#39;</span>].hist(bins<span class="op">=</span><span class="dv">100</span>) <span class="co"># histogram the data with 20 bins.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Histogram of Number of Nurses&#39;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">&#39;log&#39;</span>)</span></code></pre></div>
+<p>Let’s try and see how the number of nurses relates to the number of
+doctors.</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>)) </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ax.plot(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>], data[<span class="st">&#39;num_nurses_fulltime&#39;</span>], <span class="st">&#39;rx&#39;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">&#39;log&#39;</span>) <span class="co"># use a logarithmic x scale</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">&#39;log&#39;</span>) <span class="co"># use a logarithmic Y scale</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># give the plot some titles and labels</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Number of Nurses against Number of Doctors&#39;</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;number of nurses&#39;</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;number of doctors&#39;</span>)</span></code></pre></div>
+<p>Note a few things. We are interacting with our data. In particular,
+we are replotting the data according to what we have learned so far. We
+are using the progamming language as a <em>scripting</em> language to
+give the computer one command or another, and then the next command we
+enter is dependent on the result of the previous. This is a very
+different paradigm to classical software engineering. In classical
+software engineering we normally write many lines of code (entire object
+classes or functions) before compiling the code and running it. Our
+approach is more similar to the approach we take whilst debugging.
+Historically, researchers interacted with data using a <em>console</em>.
+A command line window which allowed command entry. The notebook format
+we are using is slightly different. Each of the code entry boxes acts
+like a separate console window. We can move up and down the notebook and
+run each part in a different order. The <em>state</em> of the program is
+always as we left it after running the previous part.</p>
 <h1 id="probabilities">Probabilities</h1>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -257,96 +367,6 @@ so rather than considering this we often use the following estimate
 <span class="math display">\[
 P(Y=y) \approx \frac{n_y}{N}.
 \]</span></p>
-<h2 id="exploring-the-nmis-data">Exploring the NMIS Data</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/nigeria-nmis-data-explore.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/nigeria-nmis-data-explore.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The NMIS facility data is stored in an object known as a ‘data
-frame’. Data frames come from the statistical family of programming
-languages based on <code>S</code>, the most widely used of which is <a
-href="http://en.wikipedia.org/wiki/R_(programming_language)"><code>R</code></a>.
-The data frame gives us a convenient object for manipulating data. The
-describe method summarizes which columns there are in the data frame and
-gives us counts, means, standard deviations and percentiles for the
-values in those columns. To access a column directly we can write</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>])</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(data[&#39;num_nurses_fulltime&#39;])</span></span></code></pre></div>
-<p>This shows the number of doctors per facility, number of nurses and
-number of community health workers (CHEWS). We can plot the number of
-doctors against the number of nurses as follows.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># this imports the plotting library in python</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> plt.plot(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>], data[<span class="st">&#39;num_nurses_fulltime&#39;</span>], <span class="st">&#39;rx&#39;</span>)</span></code></pre></div>
-<p>You may be curious what the arguments we give to
-<code>plt.plot</code> are for, now is the perfect time to look at the
-documentation</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot?</span></code></pre></div>
-<p>We immediately note that some facilities have a lot of nurses, which
-prevent’s us seeing the detail of the main number of facilities. First
-lets identify the facilities with the most nurses.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">&#39;num_nurses_fulltime&#39;</span>]<span class="op">&gt;</span><span class="dv">100</span>]</span></code></pre></div>
-<p>Here we are using the command
-<code>data['num_nurses_fulltime']&gt;100</code> to index the facilities
-in the pandas data frame which have over 100 nurses. To sort them in
-order we can also use the <code>sort</code> command. The result of this
-command on its own is a data <code>Series</code> of <code>True</code>
-and <code>False</code> values. However, when it is passed to the
-<code>data</code> data frame it returns a new data frame which contains
-only those values for which the data series is <code>True</code>. We can
-also sort the result. To sort the result by the values in the
-<code>num_nurses_fulltime</code> column in <em>descending</em> order we
-use the following command.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">&#39;num_nurses_fulltime&#39;</span>]<span class="op">&gt;</span><span class="dv">100</span>].sort_values(by<span class="op">=</span><span class="st">&#39;num_nurses_fulltime&#39;</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
-<p>We now see that the ‘University of Calabar Teaching Hospital’ is a
-large outlier with 513 nurses. We can try and determine how much of an
-outlier by histograming the data.</p>
-<h2 id="plotting-the-data">Plotting the Data</h2>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;num_nurses_fulltime&#39;</span>].hist(bins<span class="op">=</span><span class="dv">20</span>) <span class="co"># histogram the data with 20 bins.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Histogram of Number of Nurses&#39;</span>)</span></code></pre></div>
-<p>We can’t see very much here. Two things are happening. There are so
-many facilities with zero or one nurse that we don’t see the histogram
-for hospitals with many nurses. We can try more bins and using a
-<em>log</em> scale on the <span
-class="math inline">\(y\)</span>-axis.</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&#39;num_nurses_fulltime&#39;</span>].hist(bins<span class="op">=</span><span class="dv">100</span>) <span class="co"># histogram the data with 20 bins.</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Histogram of Number of Nurses&#39;</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">&#39;log&#39;</span>)</span></code></pre></div>
-<p>Let’s try and see how the number of nurses relates to the number of
-doctors.</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>)) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax.plot(data[<span class="st">&#39;num_doctors_fulltime&#39;</span>], data[<span class="st">&#39;num_nurses_fulltime&#39;</span>], <span class="st">&#39;rx&#39;</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">&#39;log&#39;</span>) <span class="co"># use a logarithmic x scale</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">&#39;log&#39;</span>) <span class="co"># use a logarithmic Y scale</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># give the plot some titles and labels</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Number of Nurses against Number of Doctors&#39;</span>)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;number of nurses&#39;</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;number of doctors&#39;</span>)</span></code></pre></div>
-<p>Note a few things. We are interacting with our data. In particular,
-we are replotting the data according to what we have learned so far. We
-are using the progamming language as a <em>scripting</em> language to
-give the computer one command or another, and then the next command we
-enter is dependent on the result of the previous. This is a very
-different paradigm to classical software engineering. In classical
-software engineering we normally write many lines of code (entire object
-classes or functions) before compiling the code and running it. Our
-approach is more similar to the approach we take whilst debugging.
-Historically, researchers interacted with data using a <em>console</em>.
-A command line window which allowed command entry. The notebook format
-we are using is slightly different. Each of the code entry boxes acts
-like a separate console window. We can move up and down the notebook and
-run each part in a different order. The <em>state</em> of the program is
-always as we left it after running the previous part.</p>
 <h2 id="probability-and-the-nmis-data">Probability and the NMIS
 Data</h2>
 <div style="text-align:right">
@@ -356,12 +376,12 @@ style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/ni
 </div>
 <p>Let’s use the sum rule to compute the estimate the probability that a
 facility has more than two nurses.</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> (data.num_nurses_fulltime<span class="op">&gt;</span><span class="dv">2</span>).<span class="bu">sum</span>()  <span class="co"># number of positive outcomes (in sum True counts as 1, False counts as 0)</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>total_facilities <span class="op">=</span> data.num_nurses_fulltime.count()</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>prob_large <span class="op">=</span> <span class="bu">float</span>(large)<span class="op">/</span><span class="bu">float</span>(total_facilities)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of number of nurses being greather than 2 is:&quot;</span>, prob_large)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> (data.num_nurses_fulltime<span class="op">&gt;</span><span class="dv">2</span>).<span class="bu">sum</span>()  <span class="co"># number of positive outcomes (in sum True counts as 1, False counts as 0)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>total_facilities <span class="op">=</span> data.num_nurses_fulltime.count()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>prob_large <span class="op">=</span> <span class="bu">float</span>(large)<span class="op">/</span><span class="bu">float</span>(total_facilities)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of number of nurses being greather than 2 is:&quot;</span>, prob_large)</span></code></pre></div>
 <h1 id="conditioning">Conditioning</h1>
 <p>When predicting whether a coin turns up head or tails, we might think
 that this event is <em>independent</em> of the year or time of day. If
@@ -380,11 +400,11 @@ dependent on the number of doctors. For this we can try estimating <span
 class="math inline">\(P(Y&gt;2 | X&gt;1)\)</span> and compare the
 result, for example to <span class="math inline">\(P(Y&gt;2|X\leq
 1)\)</span> using our empirical estimate of the probability.</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> ((data.num_nurses_fulltime<span class="op">&gt;</span><span class="dv">2</span>) <span class="op">&amp;</span> (data.num_doctors_fulltime<span class="op">&gt;</span><span class="dv">1</span>)).<span class="bu">sum</span>()</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>total_large_doctors <span class="op">=</span> (data.num_doctors_fulltime<span class="op">&gt;</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>prob_both_large <span class="op">=</span> large<span class="op">/</span>total_large_doctors</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of number of nurses being greater than 2 given number of doctors is greater than 1 is:&quot;</span>, prob_both_large)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> ((data.num_nurses_fulltime<span class="op">&gt;</span><span class="dv">2</span>) <span class="op">&amp;</span> (data.num_doctors_fulltime<span class="op">&gt;</span><span class="dv">1</span>)).<span class="bu">sum</span>()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>total_large_doctors <span class="op">=</span> (data.num_doctors_fulltime<span class="op">&gt;</span><span class="dv">1</span>).<span class="bu">sum</span>()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>prob_both_large <span class="op">=</span> large<span class="op">/</span>total_large_doctors</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of number of nurses being greater than 2 given number of doctors is greater than 1 is:&quot;</span>, prob_both_large)</span></code></pre></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Write code that prints out the probability of nurses being greater
 than 2 for different numbers of doctors.</p>
@@ -509,12 +529,12 @@ simultaneous questions, what’s the probability that the number of nurses
 was over 2 and the number of doctors was 1? Or any other question that
 may occur to us. Again we can easily use pandas to ask such
 questions.</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>num_doctors <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> (data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>total_facilities <span class="op">=</span> data.num_nurses_fulltime.count() <span class="co"># this is total number of films</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>prob_large <span class="op">=</span> <span class="bu">float</span>(large)<span class="op">/</span><span class="bu">float</span>(total_facilities)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of nurses being greater than 2 and number of doctors being&quot;</span>, num_doctors, <span class="st">&quot;is:&quot;</span>, prob_large)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>num_doctors <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>large <span class="op">=</span> (data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>total_facilities <span class="op">=</span> data.num_nurses_fulltime.count() <span class="co"># this is total number of films</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>prob_large <span class="op">=</span> <span class="bu">float</span>(large)<span class="op">/</span><span class="bu">float</span>(total_facilities)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Probability of nurses being greater than 2 and number of doctors being&quot;</span>, num_doctors, <span class="st">&quot;is:&quot;</span>, prob_large)</span></code></pre></div>
 <h2 id="the-product-rule">The Product Rule</h2>
 <p>This number is the joint probability, <span
 class="math inline">\(P(Y, X)\)</span> which is much <em>smaller</em>
@@ -537,16 +557,16 @@ p(y, x) = p(y|x)p(x)
 \]</span> We can see the relation working in practice for our data above
 by computing the different values for <span
 class="math inline">\(x=1\)</span>.</p>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>num_doctors<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>num_nurses<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>p_x <span class="op">=</span> <span class="bu">float</span>((data.num_doctors_fulltime<span class="op">==</span>num_doctors).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>(data.num_doctors_fulltime.count())</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>p_y_given_x <span class="op">=</span> <span class="bu">float</span>((data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span>num_nurses).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>((data.num_doctors_fulltime<span class="op">==</span>num_doctors).<span class="bu">sum</span>())</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>p_y_and_x <span class="op">=</span> <span class="bu">float</span>((data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span>num_nurses).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>(data.num_nurses_fulltime.count())</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(x) is&quot;</span>, p_x)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(y|x) is&quot;</span>, p_y_given_x)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(y,x) is&quot;</span>, p_y_and_x)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>num_doctors<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>num_nurses<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>p_x <span class="op">=</span> <span class="bu">float</span>((data.num_doctors_fulltime<span class="op">==</span>num_doctors).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>(data.num_doctors_fulltime.count())</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>p_y_given_x <span class="op">=</span> <span class="bu">float</span>((data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span>num_nurses).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>((data.num_doctors_fulltime<span class="op">==</span>num_doctors).<span class="bu">sum</span>())</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>p_y_and_x <span class="op">=</span> <span class="bu">float</span>((data.num_nurses_fulltime[data.num_doctors_fulltime<span class="op">==</span>num_doctors]<span class="op">&gt;</span>num_nurses).<span class="bu">sum</span>())<span class="op">/</span><span class="bu">float</span>(data.num_nurses_fulltime.count())</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(x) is&quot;</span>, p_x)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(y|x) is&quot;</span>, p_y_given_x)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;P(y,x) is&quot;</span>, p_y_and_x)</span></code></pre></div>
 <h2 id="the-sum-rule">The Sum Rule</h2>
 <p>The other <em>fundamental rule</em> of probability is the <em>sum
 rule</em> this tells us how to get a <em>marginal</em> distribution from
@@ -597,8 +617,8 @@ style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/pr
 <p>What use is all this probability in data science? Let’s think about
 how we might use the probabilities to do some decision making. Let’s
 look at the information data.</p>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data.columns</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data.columns</span></code></pre></div>
 <h3 id="exercise-3">Exercise 3</h3>
 <p>Now we see we have several additional features. Let’s assume we want
 to predict <code>maternal_health_delivery_services</code>. How would we
@@ -654,98 +674,6 @@ data-cites="Bishop:book06">Bishop (2006)</span></p></li>
 <li><p>Exercise 1.9 of <span class="citation"
 data-cites="Bishop:book06">Bishop (2006)</span></p></li>
 </ul>
-<h1 id="a-first-analysis">A First Analysis</h1>
-<h2 id="covid-vaccination-and-simpsons-paradox">Covid Vaccination and
-Simpson’s Paradox</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_data-science/includes/covid-vaccination-and-simpsons-paradox.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_data-science/includes/covid-vaccination-and-simpsons-paradox.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>In this exercise we’re going to consider an analysis example that
-involves computing probabilities. The scenario is associated with covid
-vaccination and disease.</p>
-<h2 id="data-on-covid-hospitalizations-from-israel">Data on Covid
-Hospitalizations from Israel</h2>
-<div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span
-class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/hospitalized-covid-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/hospitalized-covid-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
-</div>
-<p>The data is originally from the Israeli government data dashboard,
-but we’ve made it available throught he <code>pods</code> library.</p>
-<p>This version of the data was created for a blog post, <span
-class="citation" data-cites="Morris-israeli21">Morris (2021)</span>,
-that analyzed that investigated hospitalization of vaccinated and
-unvaccinated patients with Covid19.</p>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.hospitalized_covid()[<span class="st">&quot;X&quot;</span>]</span></code></pre></div>
-<p><code>pods</code> has taken care of loading the data into a
-<code>pandas.DataFrame</code> for us.</p>
-<p>The data frame contains, indexed by age group, the raw counts of
-disease for the fully vaccinated (<code>vax</code>), the partially
-vaccinated (<code>partial vax</code>) and the unvaccinated
-(<code>unvax</code>). Additionally it provides <em>rates</em> of disease
-per 100,000 population (<code>per 100k</code>) for each category.</p>
-<p>Severe disease is also listed for raw counts and disease rates
-(<code>severe</code>), where severe disease is disease that <em>requires
-hospitalisation</em>. Overall this gives us twelve columns total (six
-for raw counts, six for rates). Data is from 15th August 2021.</p>
-<h3 id="exercise-4">Exercise 4</h3>
-<p>Estimate the probability of being fully vaccinated given that you
-have severe disease, <span
-class="math inline">\(p(\text{vax}|\text{severe})\)</span>. Compare this
-with <span class="math inline">\(p(\text{unvax}|\text{severe})\)</span>.
-What does this number tell you about the efficacy of the vaccine?</p>
-<h3 id="exercise-5">Exercise 5</h3>
-<p>We are given raw counts of disease and we are also given disease
-rates per 100,000. Use these columns to estimate the total population of
-vaccinated, unvaccinated and partially vaccinated individuals. Add these
-columns to the data frame using consistent naming.</p>
-<p>Now estimate the probability of an individual in the Israeli
-population being vaccinated, <span
-class="math inline">\(p(\text{vax})\)</span>?</p>
-<p>Note: You may wish to sanity check your population estimates by
-comparing the total population they imply against the population of
-Israel (which is about 9 million). Your total population should be
-slightly less as we have no data for under 12s.</p>
-<h3 id="exercise-6">Exercise 6</h3>
-<p>Now compute the probability of severe disease given that you have the
-vaccine <span class="math inline">\(p(\text{severe}|\text{vax})\)</span>
-against <span
-class="math inline">\(p(\text{severe}|\text{unvax})\)</span>.</p>
-<p>Why is this a more informative comparison for estimating disease
-efficacy than the estimates we looked at of <span
-class="math inline">\(p(\text{vax}|\text{severe})\)</span> and <span
-class="math inline">\(p(\text{unvax}|\text{severe})\)</span>?</p>
-<p>The <a href="https://en.wikipedia.org/wiki/Relative_risk">relative
-risk</a> of severe disease associated with vaccination is defined as
-<span class="math display">\[
-RR =\frac{p(\text{severe}|\text{unvax})}{p(\text{severe}|\text{vax})}.
-\]</span> If this is less than 1 then vaccination is protective, if it
-is greater than 1 then vaccination is a “risk factor”.</p>
-<h3 id="exercise-7">Exercise 7</h3>
-<p>Compute the relative risk of vaccination in the whole Israeli
-population, decide whether vaccination is protective against severe
-disease.</p>
-<h3 id="exercise-8">Exercise 8</h3>
-<p>Now compute the relative risk of vaccination for <em>each age
-group</em> in the data set. Compare these relative risks to the relative
-risk in the whole population.</p>
-<p>The unusual phenomenon you see is known as <em>Simpson’s
-paradox</em>. It is arising because this data is <a
-href="https://en.wikipedia.org/wiki/Observational_study"><em>observational
-data</em></a>. It is not surveillance data. When computing relative risk
-for the whole population age is operating as a <em>confounder</em>. We
-have not controlled for this confounder, so we end up with a misleading
-representation of the risk. When looking in each individual age group we
-find that the vaccine is more protective for each individual age group
-than it appears to be for the population as a whole. This highlights the
-risks of observational data vs randomization (known as surveillance
-data). A major challenge of data science is that we are habitually
-dealing with observational data, not surveillance data.</p>
 <h2 id="correlation-coefficients">Correlation Coefficients</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -822,15 +750,17 @@ no direct relationship between these to variables, but there is a third
 variable associated with the passing of the seasons that triggers the
 sales figures of both swim gear and ice creams to increase.</p>
 <p>Let’s look an example using the Nigerian NMIS data.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>hospital_data <span class="op">=</span> data</span></code></pre></div>
 <p>We’ll just look at the numbers of nurses, doctors, midwives and
 community health extension workers (CHEWs).</p>
-<div class="sourceCode" id="cb29"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>hospital_workers_data <span class="op">=</span> hospital_data[[<span class="st">&quot;num_chews_fulltime&quot;</span>, <span class="st">&quot;num_nurses_fulltime&quot;</span>, <span class="st">&quot;num_nursemidwives_fulltime&quot;</span>, <span class="st">&quot;num_doctors_fulltime&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hospital_workers_data <span class="op">=</span> hospital_data[[<span class="st">&quot;num_chews_fulltime&quot;</span>, <span class="st">&quot;num_nurses_fulltime&quot;</span>, <span class="st">&quot;num_nursemidwives_fulltime&quot;</span>, <span class="st">&quot;num_doctors_fulltime&quot;</span>]]</span></code></pre></div>
 <p>We can compute the correlation of the columns using
 <code>.corr()</code> on the <code>pandas.DataFrame</code>.</p>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
 <div class="figure">
 <div id="nigeria-nmis-correlation-matrix-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/advds/./slides/diagrams//data-science/nigeria-nmis-correlation-matrix.svg" width="80%" style=" ">
@@ -856,6 +786,11 @@ matrices, see for example <code>corrplot</code> from
 <p>Before we proceed, let’s just dive deeper into some of these
 correlations using scatter plots.</p>
 <h2 id="plotting-variables">Plotting Variables</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_data-science/includes/correlation-coefficients.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_data-science/includes/correlation-coefficients.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>When exploring a data set it’s often useful to create a scatter plot
 of the different variables. In <code>pandas</code> this can be done
 using <code>pandas.tools.plotting.scatter_matrix</code>.</p>
@@ -919,8 +854,8 @@ and 1.3.</p>
 </div>
 <p>From the zoom in we can see that the cliff is occurring somewhere
 below 1.3 on the plot, let’s find what the value of this cliff is.</p>
-<div class="sourceCode" id="cb31"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>hospital_data[<span class="st">&quot;num_nurses_fulltime&quot;</span>][np.log10(hospital_data[<span class="st">&quot;num_nurses_fulltime&quot;</span>]<span class="op">+</span><span class="dv">1</span>)<span class="op">&lt;</span><span class="fl">1.3</span>].<span class="bu">max</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>hospital_data[<span class="st">&quot;num_nurses_fulltime&quot;</span>][np.log10(hospital_data[<span class="st">&quot;num_nurses_fulltime&quot;</span>]<span class="op">+</span><span class="dv">1</span>)<span class="op">&lt;</span><span class="fl">1.3</span>].<span class="bu">max</span>()</span></code></pre></div>
 <p>Giving us the value of 16. This is slightly odd, and suggests the
 values may have been censored in some way. We can see this if we bar
 chart them.</p>
@@ -960,48 +895,97 @@ numbers in hand-reported data. Another technique that can be used when
 looking for fraudulent data is known as <a
 href="https://en.wikipedia.org/wiki/Benford%27s_law">Benford’s law</a>,
 which describes the distribution of first digits.</p>
-<h1 id="a-second-analysis">A Second Analysis</h1>
-<h2 id="bmi-steps-data">BMI Steps Data</h2>
+<h2 id="structuring-your-code-using-the-fynesse-template">Structuring
+Your Code using the Fynesse Template</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
-style=""><a href="https://github.com/lawrennd/snippets/edit/main/_datasets/includes/bmi-steps-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_datasets/includes/bmi-steps-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_data-science/includes/structure-fynesse-template.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_data-science/includes/structure-fynesse-template.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The BMI Steps example is taken from <span class="citation"
-data-cites="Yanai-hypothesis20">Yanai and Lercher (2020)</span>. We are
-given a data set of body-mass index measurements against step counts.
-For convenience we have packaged the data so that it can be easily
-downloaded.</p>
+<div class="figure">
+<div id="fynesse-template-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/fynesse-template.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="fynesse-template-magnify" class="magnify"
+onclick="magnifyFigure(&#39;fynesse-template&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="fynesse-template-caption" class="caption-frame">
+<p>Figure: The Fynesse Template gives you a starting point for building
+your data science library. You can fork the template, and then create a
+new repository from the template. You can use that repository for your
+analysis.</p>
+</div>
+</div>
+<p>Along this notebook, you have created different pieces of code to
+manage your data. You first executed some commands to download and
+explore your data. Then, you used pieces of code to plot and assess the
+datasets. In the end, you explored some statistical concepts to analyse
+your data.</p>
+<p>The problems a data scientist faces and the strategies for their
+resolution are usually quite similar between domains and datasets. For
+example, you might want to download different datasets but the API
+request follows always the same logic. It makes sense then to structure
+your code in a way it can be reused and you save time. That is one of
+the technical goals we want you to achieve in this course. To facilitate
+this, you should use the Fynesse template for structuring your code.</p>
+<p>The Fynesse template provides a Python template repo for doing data
+analysis according to the Fynesse framework (Access, Assess, and
+Address). You will use this template to create your own data analysis
+library. If you define such a library in a general enough way, you
+should be able to use the code you write in this course in your future
+data science projects.</p>
+<p>We expect you to keep this library updated and use it during the
+course practicals and final assessment. In fact, for the final
+assignment, you will provide a short repository overview describing how
+you have implemented the different parts of the project and where you
+have placed those parts in your library. We will use your library to
+understand and reconstruct the thinking behind your analysis.</p>
+<p>Please follow this instructions to create your Python library based
+on the Fynesse Template:</p>
+<p>You should start by forking the Fynesse Template repository.</p>
+<p>A fork is a copy of a repository. Forking a repository allows you to
+freely experiment with changes without affecting the original
+project.</p>
+<p>You can fork the repository using your web explorer and your GitHub
+account. In <a href="https://github.com/lawrennd/fynesse_template">the
+Fynesse template</a> GitHub repository click on the <code>Fork</code>
+box, and then click on <code>+ Create a new fork</code>. You will see
+another page to set the details of your library. Name your repository
+using your CRSid with the following format:
+<code>[CRSid]_ads_2024</code>.</p>
+<p>Ensure you copy the main branch only. You can change the description
+as you wish and then click on <code>Create fork</code>.</p>
+<p>After creating the fork, you should have the template in your own
+GitHub as a repository with the name you set when creating the fork.
+Clone this repo in your machine and open it using the IDE of your
+preference so you can start making changes to your library following the
+Fynesse template.</p>
+<p>Let’s create a <code>Hello World!</code> method in the
+<code>access</code> layer.</p>
+<pre><code>def hello_world():
+  print(&quot;Hello from the data science library!&quot;)</code></pre>
+<p>Copy the code above to the <code>access.py</code> file in your
+library. The file is in the path <code>./fynesse/access.py</code>.</p>
+<p>Commit and push your changes. Now, you are ready to import and use
+your library from this notebook.</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip uninstall <span class="op">--</span>yes fynesse</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace this with the location of your fynesse implementation</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>githubusername<span class="op">/</span>fynesse_template.git</span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fynesse</span></code></pre></div>
 <div class="sourceCode" id="cb33"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
-<p>It is good practice to give our variables interpretable names so that
-the analysis may be clearly understood by others. Here the
-<code>steps</code> count is the first dimension of the covariate, the
-<code>bmi</code> is the second dimension and the <code>gender</code> is
-stored in <code>y</code> with <code>1</code> for female and
-<code>0</code> for male.</p>
-<div class="sourceCode" id="cb34"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
-<p>We can check the mean steps and the mean of the BMI.</p>
-<div class="sourceCode" id="cb35"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
-<h2 id="bmi-steps-analysis">BMI Steps Analysis</h2>
-<h3 id="exercise-9">Exercise 9</h3>
-<p>The hypothesis is that the number of steps taken may have an effect
-on the BMI. Using what you’ve learnt about correlation and probability
-explore this hypothesis using the box below.</p>
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fynesse.access.hello_world()</span></code></pre></div>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to
 check the following resources.</p>
 <ul>
+<li>book: <a
+href="https://www.penguin.co.uk/books/455130/the-atomic-human-by-lawrence-neil-d/9780241625248">The
+Atomic Human</a></li>
 <li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
 <li>podcast: <a href="http://thetalkingmachines.com">The Talking
 Machines</a></li>
@@ -1017,12 +1001,6 @@ role="list">
 <div id="ref-Bishop:book06" class="csl-entry" role="listitem">
 Bishop, C.M., 2006. Pattern recognition and machine learning. springer.
 </div>
-<div id="ref-Morris-israeli21" class="csl-entry" role="listitem">
-Morris, J., 2021. <a
-href="https://www.covid-datascience.com/post/israeli-data-how-can-efficacy-vs-severe-disease-be-strong-when-60-of-hospitalized-are-vaccinated">Israeli
-data: How can efficacy vs. Severe disease be strong when 60% of
-hospitalized are vaccinated?</a>
-</div>
 <div id="ref-Rogers:book11" class="csl-entry" role="listitem">
 Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC
 Press.
@@ -1036,10 +1014,6 @@ field experiment about dishonesty</a>.
 The Office of the Senior Special Assistant to the President on the
 Millennium Development Goals (OSSAP-MDGs), Columbia University, 2014.
 Nigeria <span>NMIS</span> facility database.
-</div>
-<div id="ref-Yanai-hypothesis20" class="csl-entry" role="listitem">
-Yanai, I., Lercher, M., 2020. A hypothesis is a liability. Genome
-Biology 21.
 </div>
 </div>
 <aside id="footnotes" class="footnotes footnotes-end-of-document"

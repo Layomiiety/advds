@@ -1,0 +1,24 @@
+- given: Neil D. 
+  family: Lawrence
+  image: people/neil-lawrence.png
+  url: https://inverseprobability.com/
+  title: Neil Lawrence
+
+- given: Carl Henrik
+  family: Ek
+  image: people/carl-henrik-ek.png
+  url: https://carlhenrik.com
+  title: Carl Henrik Ek
+
+- given: Christian
+  family: Cabrera
+  image: people/christian-cabrera.jpg
+  url: https://cabrerac.github.io/
+  title: Christian Cabrera
+
+- given: Radzim
+  family: Sendyka
+  image: people/radzim-sendyka.jpg
+  url: https://www.cst.cam.ac.uk/people/rs2071
+  title: Radzim Sendyka
+
