@@ -27,8 +27,17 @@ ipynb: false
 ---
 
 
+- Course Introduction
+- The Atomic Human
+  - Embodiment Factors
+  - Bandwidth Constrained Conversations
+  - Computer Conversations
+- Mathematical Statistics 
+  - Mathematical Data Science
+- Data Science as Debugging
+  - The Fynesse Framework
 
-\include{_advds/includes/overview-2024.md}
+<!--\include{_advds/includes/overview-2025.md}
 \include{_ai/includes/henry-ford-intro.md}
 \include{_books/includes/the-atomic-human.md}
 \include{_data-science/includes/lies-damned-lies.md}
@@ -47,6 +56,10 @@ ipynb: false
 \include{_ai/includes/baby-shoes.md}
 \include{_ai/includes/conversation-computer.md}
 \include{_ai/includes/evolved-relationship-ai.md}
+\include{_data-science/includes/data-science-as-debugging.md}
+\include{_data-science/includes/access-assess-address.md}
+
+\include{_data-science/includes/fynesse-template.md}
 
 \subsection{What Next?}
 
@@ -58,7 +71,7 @@ ipynb: false
 
 \notes{You can also make a start on the first practical, <https://mlatcl.github.io/ads/lectures/practical-one.html> which covers SQL databases and joins.}
 
-\notes{You should also give the main assignment (available through [Moodle](https://vle.cam.ac.uk)) a read through to give yourself a sense of the questions you'll need to answer.}
+\notes{You should also give the main assignment (available through [Moodle](https://vle.cam.ac.uk)) a read through to give yourself a sense of the questions you'll need to answer.}-->
 
 \reading
 
