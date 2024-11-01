@@ -13,8 +13,16 @@ author:
   institute: University of Cambridge
   twitter: lawrennd
   url: http://inverseprobability.com
+- family: Cabrera
+  given: Christian
+  institute: University of Cambridge
+  url: https://www.cst.cam.ac.uk/people/chc79
+- family: Sendyka
+  given: Radzim
+  institute: University of Cambridge
+  url: https://www.cst.cam.ac.uk/people/rs2071
 postsdir: ../../../mlatcl/advds/_practicals/
-date: 2023-10-27
+date: 2024-11-01
 transition: None
 reveal: false
 ipynb: true
@@ -26,11 +34,16 @@ ipynb: true
 
 \notes{We suggest you run these labs in *Google colab*, there's a link to doing that on the main lab page at the top. We also suggest that the first thing you do is click `View`->`Expand sections` to make all parts of the lab visibile.}
 
+\notes{- This session should prepare you for different parts of the course practicals and final assignment.
+
+- We will use the fynesse library through the course. You will create your own library and will update it as the course progress. The library will also contain your work for the final assignment.}
+
 \notes{We suggest you complete at least Exercises 4-9.}
 
 \include{_advds/includes/advds-notebook-setup.md}
 
-\include{_systems/includes/nigeria-nmis-data-systems.md}
+\include{_datasets/includes/nigeria-nmis-data.md}
+\include{_ml/includes/nigeria-nmis-data-explore.md}
 \include{_ml/includes/probability-intro.md}
 
 \newslide{}
@@ -58,19 +71,9 @@ ipynb: true
 
 \exercises
 
-\section{A First Analysis}
-
-\include{_data-science/includes/covid-vaccination-and-simpsons-paradox.md}
-
 
 \include{_data-science/includes/correlation-coefficients.md}
-
-\section{A Second Analysis}
-\include{_datasets/includes/bmi-steps-data.md}
-
-\subsection{BMI Steps Analysis}
-
-\codeassignment{The hypothesis is that the number of steps taken may have an effect on the BMI. Using what you've learnt about correlation and probability explore this hypothesis using the box below.}{}{15}
+\include{_data-science/includes/structure-fynesse-template.md}
 
 
 \thanks
@@ -78,6 +81,5 @@ ipynb: true
 \reading
 
 \exercises
-
 
 \references
