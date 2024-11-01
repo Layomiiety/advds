@@ -27,7 +27,7 @@ time: "15:00"
 postsdir: ../../../mlatcl/advds/_practicals/
 date: 2024-11-05
 transition: None
-ipynb: true
+ipynb: false
 ---
 
 \notes{**The check Session for this Practical is 7th November 2024.**}
