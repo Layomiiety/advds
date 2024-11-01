@@ -1774,7 +1774,208 @@ Mining for Misinformation</h2>
 class="editsection"
 style=""><a href="https://github.com/lawrennd/snippets/edit/main/_data-science/includes/joyce-nabende-text-mining-case-study.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_data-science/includes/joyce-nabende-text-mining-case-study.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<div class="centered " style="">
+<div class="centered" style="">
+<svg viewBox="0 0 200 200" style="width:15%">
+<defs> <clipPath id="clip5">
+<style>
+circle {
+  fill: black;
+}
+</style>
+<circle cx="100" cy="100" r="100"/> </clipPath> </defs>
+<title>
+Joyce Nakatumba-Nabende
+</title>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/advds/./slides/diagrams//people/joyce-nabende.jpg" clip-path="url(#clip5)"/>
+</svg>
+</div>
+<p>We consider a case study from Joyce Nabende, Head of the <a
+href="https://air.ug/">Makerere AI Lab</a>. This case study is based on
+a presentation given by Joyce to the DSA Research Grants, “Project
+Progress” session on 20th August 2021.</p>
+<p>The aim of the case study is to map some of the approaches used by
+Joyce onto the Access, Assess, Address paradigm.</p>
+<p>The aim of the project is to develop tools for automated
+misinformation detection. Web, mobile based social media platforms.
+Social media posts are invalid, inaccurate, potentially harmful. This is
+set within the context of the Covid-19 pandemic within Uganda.</p>
+<div class="figure">
+<div id="uganda-social-medial-killing-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-uganda-social-media-killing.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="uganda-social-medial-killing-magnify" class="magnify"
+onclick="magnifyFigure(&#39;uganda-social-medial-killing&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="uganda-social-medial-killing-caption" class="caption-frame">
+<p>Figure: Misinformation through media has been a challenge for as long
+as we’ve been communicating. Social media misinformation is a particular
+challenge due to the number of possible sources, the scale and speed
+with which it can propagate. Slide from Joyce Nabende’s
+presentation.</p>
+</div>
+</div>
+<p>In common with many applications of data science, and in line with
+traditional statistics, the question here comes first, at the beginning
+of the data collection. But the access of the data is made easier by the
+fact that the data exists in the digital space already. There are APIs
+for collecting data from Facebook and Twitter.</p>
+<p>The focus here will be trying to understand which parts of this data
+collection process might be reusable for others. The aim is to separate
+those reusable parts from aspects that are specific to the question.</p>
+<div class="figure">
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-figure"
+class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-magnify"
+class="magnify"
+onclick="magnifyFigure(&#39;napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div
+id="napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06-caption"
+class="caption-frame">
+<p>Figure: Social media is widespread in Uganda, perhaps largely due to
+widespread availability of mobile phone access.</p>
+</div>
+</div>
+<p>As with any data science problem, it’s vital that domain knowledge is
+included in the analysis of the problem. To set context, we see in
+Figure <span
+class="math inline">\(\ref{napoleoncat-social-media-statistics-facebook-users-in-uganda_2021_06}\)</span>
+how widespread use of social media is in Uganda for different age
+groups. The total population of Uganda is around 47 million.</p>
+<div class="figure">
+<div id="joyce-nabende-data-science-objective-figure"
+class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-data-science-objective.png" width="90%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="joyce-nabende-data-science-objective-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-data-science-objective&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="joyce-nabende-data-science-objective-caption"
+class="caption-frame">
+<p>Figure: The objective of the project is to track misinformation and
+understandperceptions of Ugandan Government’s COVID-19 transmission
+mitigation strategies.</p>
+</div>
+</div>
+<p>One challenge for this project is dealing with a data set with
+multiple languages. In Uganda, people don’t just communicate in English,
+but they will <a
+href="https://en.wikipedia.org/wiki/Code-switching">code-switch</a> or
+communicate purely in, e.g. Luganda. Tools and resources for dealing
+with code-switching or the Lugandan language in NLP are much less common
+than tools for dealing with high resource languages (e.g. German,
+English, French, Spanish, Mandarin). See <span class="citation"
+data-cites="Magueresse-lowresource20">Magueresse et al. (2020)</span>
+for a review of NLP in low resource languages, multilingual data sets
+bring their own problems <span class="citation"
+data-cites="Aman-dataset20">Aman Ullah et al. (2020)</span>.</p>
+<p>The Luganda language is the most widely spoken indigenous language in
+Uganda with more than seven million speakers. By definition, a low
+resourced language has less capabilities for data annotation and
+augmentation, e.g. part of speech taggers.</p>
+<h2 id="data-access">Data Access</h2>
+<p>The social media data was collected from a set of pages (media
+institutions, ministry of health, media personalities, top
+twitter/facebook users from Uganda. All data was then filtered using
+keywords, ‘ssenyiga’, ‘kolona’, ‘corona’ ,‘virus’ ,‘obulwadde’,
+‘corona’, ‘covid’, ‘abalwadde’, ‘ekirwadde’, ‘akawuka’, ‘staysafeug’,
+‘stayhome’, ‘tonsemberera’, ‘tokwatakudereva’, ‘vaccine’ to select with
+Covid-19 related tweets. Very short Facebook posts were also removed.
+Data was collected in two phases, from March 2020 - March 2021 and then
+from June 2021 - August 2021. Raw data points 15,354 posts from twitter
+and 430,075 from Facebook.</p>
+<p>Note that in this case, knowledge of the question has been used in
+accessing the data. The context of the data is Uganda and the focus is
+Covid-19. That focus is driven by the pandemic. However, as we see when
+we get to data assessment, there is still an amount of reusable work
+that could/should be automated.</p>
+<h2 id="data-assessment">Data Assessment</h2>
+<p>After collecting data, the initial assessment was formed to
+understand the data, uncover patterns and gain insights. Here various
+visualisations can be used to find any unexpected factors in the
+data.</p>
+<div class="figure">
+<div id="joyce-nabende-word-cloud-twitter-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-word-cloud-twitter.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="joyce-nabende-word-cloud-twitter-caption"
+class="caption-frame">
+<p>Figure: Word cloud from the Twitter data collected through the
+filtering.</p>
+</div>
+</div>
+<p>In the case of the Uganda data set, Joyce found that mixed in with
+the Covid-19 data were topics focussed on popular Ugandan TV shows and
+the Ugandan election.</p>
+<div class="figure">
+<div id="joyce-nabende-word-cloud-twitter-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-word-cloud-facebook.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="joyce-nabende-word-cloud-twitter-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-word-cloud-twitter&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="joyce-nabende-word-cloud-twitter-caption"
+class="caption-frame">
+<p>Figure: Word cloud from the Facebook data collected through the
+filtering.</p>
+</div>
+</div>
+<div class="figure">
+<div id="joyce-nabende-lda-topics-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/advds/./slides/diagrams//data-science/joyce-nabende-lda-topics.png" width="90%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="joyce-nabende-lda-topics-magnify" class="magnify"
+onclick="magnifyFigure(&#39;joyce-nabende-lda-topics&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="joyce-nabende-lda-topics-caption" class="caption-frame">
+<p>Figure: LDA topics and topic distance maps. Interspersed with the
+Covid-19 topics are topics associated with television dance shows,
+elections, and the president showing the importance of having domain
+knowledge.</p>
+</div>
+</div>
+<p>Topic modeling highlights the different subjects present in the data,
+and how they interrelate.</p>
+<ul>
+<li>Annotation attributes:
+<ol type="a">
+<li>Data source [Facebook, Twitter]</li>
+<li>Language [English, Luganda, and codemixed]</li>
+<li>Aspect [truck drivers, hospitals, vaccine, cases, SOPs, NPIs,
+Testing, Border, Covid19_Impact, Presidential address, death, elections
+and Covid19]</li>
+<li>Sentiment [positive, negative and neutral]</li>
+<li>Misinformation [Not Fake, Fake, Partially Fake, and Others]</li>
+</ol></li>
+<li>As part of quality assurance, the data was reviewed by an
+independent team to ensure that the annotation guidelines were
+followed.}</li>
+</ul>
 <p>Annotation carried out by seven annotators who could understand both
 English and Luganda. The data was labeled with the <a
 href="https://github.com/doccano/doccano">Doccano</a> text annotation
@@ -2089,6 +2290,14 @@ href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a>
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
+<div id="ref-Aman-dataset20" class="csl-entry" role="listitem">
+Aman Ullah, M., Azman, N., Mohd Zaki, Z., Monirul Islam, Md., 2020.
+Dataset creation from multilingual data of social media: Challenges and
+consequences, in: 2020 IEEE International Women in Engineering (WIE)
+Conference on Electrical and Computer Engineering (WIECON-ECE). pp.
+288–291. <a
+href="https://doi.org/10.1109/WIECON-ECE52138.2020.9398002">https://doi.org/10.1109/WIECON-ECE52138.2020.9398002</a>
+</div>
 <div id="ref-Borchert-dataoriented20" class="csl-entry" role="listitem">
 Borchert, T., 2020. <a
 href="https://tborchertblog.wordpress.com/2020/02/13/28/">Milan: An
@@ -2141,6 +2350,12 @@ together: Mind and machine intelligence</a>. arXiv.
 Lawrence, N.D., Montgomery, J., Paquet, U., 2020. <a
 href="https://rs-delve.github.io/addenda/2020/11/24/organizational-data-maturity.html">Organisational
 data maturity</a>. The Royal Society.
+</div>
+<div id="ref-Magueresse-lowresource20" class="csl-entry"
+role="listitem">
+Magueresse, A., Carles, V., Heetderks, E., 2020. <a
+href="https://arxiv.org/abs/2006.07264">Low-resource languages:
+<span>A</span> review of past work and future challenges</a>. CoRR.
 </div>
 <div id="ref-Nazabal-engineering20" class="csl-entry" role="listitem">
 Nazábal, A., Williams, C.K.I., Colavizza, G., Smith, C.R., Williams, A.,
