@@ -1,6 +1,7 @@
 ---
 title: "Practical 1"
 practical: 1
+featured_image: assets/images/practical-one.png
 abstract: >
   In this lab session we look at setting up a SQL server, creating and populating a database, and making joins between different tables.
 layout: practical
@@ -23,7 +24,8 @@ author:
   institute: University of Cambridge
   url: http://inverseprobability.com
 time: "15:00"  
-date: 2024-11-01
+postsdir: ../../../mlatcl/advds/_practicals/
+date: 2024-11-05
 transition: None
 ipynb: true
 ---
