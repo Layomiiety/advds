@@ -33,12 +33,13 @@ reveal: true
 \include{_ai/includes/henry-ford-intro.md}
 \include{_books/includes/the-atomic-human.md}
 \include{_data-science/includes/lies-damned-lies.md}
-
 \addreading{@Lawrence-atomic24}{Chapter 5}
 
-\include{_ai/includes/embodiment-factors.md}
+\include{_ai/includes/diving-bell-butterfly.md}
+\include{_ai/includes/jean-dominique-bauby.md}
+\include{_ai/includes/shannon-bauby.md}
+\include{_ai/includes/embodiment-factors-tedx.md}
 \include{_ai/includes/conversation-tedx.md}
-
 \addreading{@Lawrence-atomic24}{Chapter 1}
 
 \include{_ai/includes/heider-simmel.md}
