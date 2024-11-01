@@ -24,6 +24,7 @@ oldyoutube:
 date: 2024-11-01
 transition: None
 ipynb: false
+reveal: true
 ---
 
 
