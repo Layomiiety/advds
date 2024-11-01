@@ -27,17 +27,8 @@ ipynb: false
 ---
 
 
-- Course Introduction
-- The Atomic Human
-  - Embodiment Factors
-  - Bandwidth Constrained Conversations
-  - Computer Conversations
-- Mathematical Statistics 
-  - Mathematical Data Science
-- Data Science as Debugging
-  - The Fynesse Framework
 
-<!--\include{_advds/includes/overview-2025.md}
+\include{_advds/includes/overview-2025.md}
 \include{_ai/includes/henry-ford-intro.md}
 \include{_books/includes/the-atomic-human.md}
 \include{_data-science/includes/lies-damned-lies.md}
@@ -53,7 +44,6 @@ ipynb: false
 
 \addreading{@Lawrence-atomic24}{Chapter 1}
 
-\include{_ai/includes/baby-shoes.md}
 \include{_ai/includes/conversation-computer.md}
 \include{_ai/includes/evolved-relationship-ai.md}
 \include{_data-science/includes/data-science-as-debugging.md}
@@ -61,17 +51,19 @@ ipynb: false
 
 \include{_data-science/includes/fynesse-template.md}
 
+\include{_ai/includes/processor-ham.md}
+\include{_data-science/includes/new-flow-of-information-ham.md}
+
 \subsection{What Next?}
 
 \slides{* Review notebook (covers `pandas`, probability and correlation)
 * Practical 1 (more `pandas`, setting up SQL on AWS, uploading data and performing joins with SQL).
 * Read through assignment to contextualise material.}
 
-\notes{As a refresher, we've provided a notebook to remind yourselves about probability and correlation, <https://mlatcl.github.io/advds/lectures/review-and-refresher.html>. We recommend that you go through exercises 4-9 of this notebook as soon as possible.}
+\notes{As a refresher, we've provided a notebook to remind yourselves about probability and correlation, <https://mlatcl.github.io/advds/practicals/review-and-refresher.html>. We recommend that you go through exercises of this notebook as soon as possible.}
 
-\notes{You can also make a start on the first practical, <https://mlatcl.github.io/ads/lectures/practical-one.html> which covers SQL databases and joins.}
+\notes{You can also make a start on the first practical, <https://mlatcl.github.io/ads/practicals/> which covers AWS and SQL.}
 
-\notes{You should also give the main assignment (available through [Moodle](https://vle.cam.ac.uk)) a read through to give yourself a sense of the questions you'll need to answer.}-->
 
 \reading
 
