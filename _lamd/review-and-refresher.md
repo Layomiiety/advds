@@ -73,7 +73,7 @@ ipynb: true
 
 
 \include{_data-science/includes/correlation-coefficients.md}
-\include{_software/includes/fynesse-setup.md}
+\include{_data-science/includes/structure-fynesse-template.md}
 
 
 \thanks
