@@ -41,6 +41,7 @@ ipynb: true
   * The Art of Statistics
 
 -->
+
 \section{Introduction}
 
 \notes{Data science is an emerging discipline. That makes it harder to make clean decisions about what any given individual will need to know to become a data scientist. Those of you who are studying now will be those that define the discipline. As we deploy more data driven decision making in the world, the role will be refined. Until we achieve that refinement, your knowledge needs to be broad based.}
@@ -51,8 +52,19 @@ ipynb: true
 
 \include{_ml/includes/statistics-to-deep-learning.md}
 
+\subsection{What are Large Language Models?}
+\include{_ai/includes/conversation-probability.md}
+\define{donaldMackayBrain}
+\define{humanAnalogueMachinesShort}
+
 \include{_ml/includes/what-are-large-language-models.md}
 
+
+\notes{But if we can avoid the pitfalls of counterfeit people, this also offers us an opportunity to *psychologically represent* [@Heider:interpersonal58] the machine in a manner where humans can communicate without special training. This in turn offers the opportunity to overcome the challenge of *intellectual debt*.}
+
+\notes{Despite the lack of interpretability of machine learning models, they allow us access to what the machine is doing in a way that bypasses many of the traditional techniques developed in statistics. But understanding this new route for access is a major new challenge.}
+
+\include{_data-science/includes/new-flow-of-information-ham.md}
 
 \include{_psychology/includes/selective-attention-bias.md}
 \define{bmiStepsAnalysis}
@@ -64,77 +76,6 @@ ipynb: true
 * Don't forget that data is almost always about people.}
 
 
-<!--
-
-
-\newslide{Background: Big Data}
-\slides{
-* Data is Pervasive phenomenon that affects all aspects of our activities
-
-* Data diffusiveness is both a challenge and an opportunity
-}
-include{_data-science/includes/gartner-hype-cycle-ai-bd-dm-dl-ml.md}
-
-include{_ml/includes/statistics-to-deep-learning.md}
-
-include{_ml/includes/what-are-large-language-models.md}
-
-\subsection{Conclusions}
-
-
-
-include{_data-science/includes/societal-effects.md}
-include{_data-science/includes/three-data-science-challenges.md}
-\notes{You can also check this \addblog{Three Data Science Challenges}{2016/07/01/data-science-challenges}}
-
-\subsection{Paradoxes of Data Society}
-
-include{_ai/includes/bear-of-little-brain.md}
-include{_data-science/includes/big-data-paradox.md}
-include{_data-science/includes/breadth-or-depth.md}
-include{_data-science/includes/big-model-paradox.md}
-include{_policy/includes/diane-coyle-fitzwilliam-lecture.md}
-include{_policy/includes/data-as-a-convener.md}
-
-
-include{_data-science/includes/value-of-data.md}
-include{_data-science/includes/privacy-intro.md}
-include{_data-science/includes/hate-speech-or-political-dissent.md}
-include{_data-science/includes/marketing-and-free-will.md}
-include{_data-science/includes/digital-revolution-and-inequality.md}
-include{_data-science/includes/privacy-amelioration.md}
-\section{Delve}
-
-include{_delve/includes/delve-report-list.md}
-
-\notes{There is lots of hope for the role data science and AI could play, but we’re still a way off from being AI-ready. Further attention is needed on some of the foundational issues around data use – access, skills, culture – before we can begin to talk in earnest about deploying AI. [link here to data readiness]}
-
-include{_delve/includes/delve-data-report.md}
-include{_delve/includes/data-report-recommendations.md}
-
-\notes{Delivering a rapid response requires the ability to quickly convene teams from across disciplines (and often institutions) around a key question. To facilitate this, we also used ideas from \addblog{open data science}{2014/07/01/open-data-science} to facilitate communication and understanding.}
-
-include{_governance/includes/data-trusts.md}
-include{_data-science/includes/data-science-africa.md}
-
-\notes{We separated the challenges we face into three groups: (1) paradoxes of the odern data society, (2) quantifying the value of data and (3) privacy loss of control and marginalization. We've noted the origins of the paradoxes, speculating that it is based in a form of data (or modelling) inattention bias demonstrated through the Gorilla. We've drawn parallels between challenges of rewarding the addition of value and the credit assignment problem in reinforecement learning and we've looked at approaches to introduce the voice of marginalized societies and people into the conversation.}
-
-\subsection{Conclusions}
-
-\slides{* Bandwidth constraints of humans
-* Big Data Paradox
-* Big Model Paradox
-* Data as a Convener
-* Decomposition of Complex Models
-}
-
-\notes{The particular circumstances of the Covid-19 pandemic have highlighted the challenges of integrating scientific ideas to answer policy questions. In this talk, we've given a formal introduction to the problem, the difficulty of communicating between individuals (particularly from different domains) and reviewed the ideas and solutions we used in the Delve initiative.}
-
-\notes{Recommendations from the DELVE Data report suggest that more effort needs to be placed into working in this manner in normal circumstances, so that when an emergency occurs we are better prepared to deal with the questions we face. Other approaches prosed include data trusts.}
-
-\notes{When we combine these difficult challenges with complex models, we need to put more effort into decomposing our models so that they may be calibrated and re-integrated at appropriate fidelities.}
-
--->
 \reading
 
 \references

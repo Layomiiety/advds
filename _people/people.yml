@@ -38,4 +38,28 @@
   family: Smith
   image: people/michael-t-smith.png
   title: Michael T. Smith
+
+- given: Martin
+  family: Mubangizi
+  image: people/martin-mubangizi.png
+  url: https://www.linkedin.com/in/martin-mubangizi-24177111/
+  title: Martin Mubangizi
+
+- given: Ricardo
+  family: Andrade Pacheco
+  image: people/ricardo-andrade-pacheco.png
+  url: http://ric70x7.github.io/
+  title: Ricardo Andrade Pacheco
+
+- given: John
+  family: Quinn
+  image: people/john-quinn.jpg
+  url: http://cit.mak.ac.ug/staff/jquinn/
+  title: John Quinn
   
+- given: David
+  family: Spiegelhalter
+  image: people/david-spiegelhalter.png
+  url: http://www.statslab.cam.ac.uk/~david/
+  title: David Spiegelhalter
+
