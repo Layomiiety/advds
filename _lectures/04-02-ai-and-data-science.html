@@ -98,6 +98,31 @@ manner.</p>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> plot</span></code></pre></div>
+<h2 id="pods">pods</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>In Sheffield we created a suite of software tools for ‘Open Data
+Science’. Open data science is an approach to sharing code, models and
+data that should make it easier for companies, health professionals and
+scientists to gain access to data science techniques.</p>
+<p>You can also check this blog post on <a
+href="http://inverseprobability.com/2014/07/01/open-data-science">Open
+Data Science</a>.</p>
+<p>The software can be installed using</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pods</span></code></pre></div>
+<p>from the command prompt where you can access your python
+installation.</p>
+<p>The code is also available on GitHub: <a
+href="https://github.com/lawrennd/ods"
+class="uri">https://github.com/lawrennd/ods</a></p>
+<p>Once <code>pods</code> is installed, it can be imported in the usual
+manner.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <!-- defines the technical variant-->
 <h2 id="statistics-to-deep-learning">Statistics to Deep Learning</h2>
 <div style="text-align:right">
@@ -440,24 +465,24 @@ class="math inline">\(g(\cdot)\)</span> as <span class="math display">\[
 <p>We’ll define our prediction, objective and gradient functions below.
 But before we start, we need to define a basis function for our model.
 Let’s start with the linear basis.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> linear</span></code></pre></div>
 <h2 id="prediction-function">Prediction Function</h2>
 <p>Now we have the basis function let’s define the prediction
 function.</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(w, x, basis<span class="op">=</span>linear, <span class="op">**</span>kwargs):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the prediction function and the basis matrix.&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> basis(x, <span class="op">**</span>kwargs)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> np.dot(Phi, w)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>f)), Phi</span></code></pre></div>
 <p>This inverse of the link function is known as the <a
 href="http://en.wikipedia.org/wiki/Logistic_function">logistic</a> (thus
 the name logistic regression) or sometimes it is called the sigmoid
@@ -488,12 +513,12 @@ P(y_i|\mathbf{ w}, \mathbf{ x}) =
 \]</span> which we can think of as clever trick for mathematically
 switching between two probabilities if we were to write it as code it
 would be better described as</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernoulli(x, y, pi):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pi(x)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">-</span>pi(x)</span></code></pre></div>
 <p>but writing it mathematically makes it easier to write our objective
 function within a single mathematical equation.</p>
 <h2 id="maximum-likelihood">Maximum Likelihood</h2>
@@ -522,15 +547,15 @@ g\left(\mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x}_i)\right) -
 \sum_{i=1}^n(1-y_i)\log \left(1-g\left(\mathbf{ w}^\top
 \boldsymbol{ \phi}(\mathbf{ x}_i)\right)\right).
 \]</span></p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(g, y):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Computes the objective function.&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(g[posind, :]).<span class="bu">sum</span>() <span class="op">-</span> np.log(<span class="dv">1</span><span class="op">-</span>g[negind, :]).<span class="bu">sum</span>()</span></code></pre></div>
 <p>As normal, we would like to minimize this objective. This can be done
 by differentiating with respect to the parameters of our prediction
 function, <span class="math inline">\(\pi(\mathbf{ x};\mathbf{
@@ -579,17 +604,17 @@ x})\right)\right)
 x})\right)\right)
 \boldsymbol{ \phi}(\mathbf{ x}_i).
 \]</span></p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient(g, Phi, y):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Generates the gradient of the parameter vector.&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    labs <span class="op">=</span> np.asarray(y, dtype<span class="op">=</span><span class="bu">float</span>).flatten()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    posind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">1</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">=</span> <span class="op">-</span>(Phi[posind]<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>g[posind])).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    negind <span class="op">=</span> np.where(labs<span class="op">==</span><span class="dv">0</span> )</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    dw <span class="op">+=</span> (Phi[negind]<span class="op">*</span>g[negind]).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dw[:, <span class="va">None</span>]</span></code></pre></div>
 <h2 id="optimization-of-the-function">Optimization of the Function</h2>
 <p>Reorganizing the gradient to find a stationary point of the function
 with respect to the parameters <span class="math inline">\(\mathbf{
@@ -1233,27 +1258,27 @@ data-cites="Yanai-hypothesis20">Yanai and Lercher (2020)</span>. We are
 given a data set of body-mass index measurements against step counts.
 For convenience we have packaged the data so that it can be easily
 downloaded.</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.bmi_steps()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>] </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span></code></pre></div>
 <p>It is good practice to give our variables interpretable names so that
 the analysis may be clearly understood by others. Here the
 <code>steps</code> count is the first dimension of the covariate, the
 <code>bmi</code> is the second dimension and the <code>gender</code> is
 stored in <code>y</code> with <code>1</code> for female and
 <code>0</code> for male.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
-<p>We can check the mean steps and the mean of the BMI.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> X[:, <span class="dv">0</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>bmi <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>gender <span class="op">=</span> y[:, <span class="dv">0</span>]</span></code></pre></div>
+<p>We can check the mean steps and the mean of the BMI.</p>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>bmi.mean()))</span></code></pre></div>
 <h2 id="bmi-steps-data-analysis">BMI Steps Data Analysis</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -1263,27 +1288,27 @@ style=""><a href="https://github.com/lawrennd/snippets/edit/main/_data-science/i
 <p>We can also separate out the means from the male and female
 populations. In python this can be done by setting male and female
 indices as follows.</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>male_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">0</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>female_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
-<p>And now we can extract the variables for the two populations.</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>male_steps <span class="op">=</span> steps[male_ind]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>male_bmi <span class="op">=</span> bmi[male_ind]</span></code></pre></div>
-<p>And as before we compute the mean.</p>
 <div class="sourceCode" id="cb22"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_steps.mean()))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>male_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">0</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>female_ind <span class="op">=</span> (gender<span class="op">==</span><span class="dv">1</span>)</span></code></pre></div>
+<p>And now we can extract the variables for the two populations.</p>
 <div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_bmi.mean()))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>male_steps <span class="op">=</span> steps[male_ind]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>male_bmi <span class="op">=</span> bmi[male_ind]</span></code></pre></div>
+<p>And as before we compute the mean.</p>
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Male BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>male_bmi.mean()))</span></code></pre></div>
 <p>Similarly, we can get the same result for the female portion of the
 populaton.</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>female_steps <span class="op">=</span> steps[female_ind]</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>female_bmi <span class="op">=</span> bmi[female_ind]</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_steps.mean()))</span></code></pre></div>
 <div class="sourceCode" id="cb26"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_bmi.mean()))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>female_steps <span class="op">=</span> steps[female_ind]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>female_bmi <span class="op">=</span> bmi[female_ind]</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female steps mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_steps.mean()))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Female BMI mean is </span><span class="sc">{mean}</span><span class="st">.&#39;</span>.<span class="bu">format</span>(mean<span class="op">=</span>female_bmi.mean()))</span></code></pre></div>
 <p>Interesting, the female BMI average is slightly higher than the male
 BMI average. The number of steps in the male group is higher than that
 in the female group. Perhaps the steps and the BMI are anti-correlated.
@@ -1291,20 +1316,20 @@ The more steps, the lower the BMI.</p>
 <p>Python provides a statistics package. We’ll import this in
 <code>python</code> so that we can try and understand the correlation
 between the <code>steps</code> and the <code>BMI</code>.</p>
-<div class="sourceCode" id="cb27"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>corr, _ <span class="op">=</span> pearsonr(steps, bmi)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s overall correlation: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>corr))</span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>male_corr, _ <span class="op">=</span> pearsonr(male_steps, male_bmi)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for males: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>male_corr))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span></code></pre></div>
 <div class="sourceCode" id="cb30"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>female_corr, _ <span class="op">=</span> pearsonr(female_steps, female_bmi)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for females: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>female_corr))</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>corr, _ <span class="op">=</span> pearsonr(steps, bmi)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s overall correlation: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>corr))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>male_corr, _ <span class="op">=</span> pearsonr(male_steps, male_bmi)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for males: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>male_corr))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>female_corr, _ <span class="op">=</span> pearsonr(female_steps, female_bmi)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Pearson&#39;s correlation for females: </span><span class="sc">{corr}</span><span class="st">&quot;</span>.<span class="bu">format</span>(corr<span class="op">=</span>female_corr))</span></code></pre></div>
 <h2 id="a-hypothesis-as-a-liability">A Hypothesis as a Liability</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
