@@ -23,7 +23,8 @@ oldyoutube:
 time: "10:00"
 date: 2024-11-04
 transition: None
-ipynb: False
+reveal: true
+ipynb: true
 ---
 
 <!--
