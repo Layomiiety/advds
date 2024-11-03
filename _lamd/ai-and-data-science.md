@@ -27,21 +27,6 @@ reveal: true
 ipynb: true
 ---
 
-<!--
-
-* AI and Data Science
-  * Machine Learning Definition
-  * Prediction Example from DSA
-  * Deep Learning
-  * LLMs – Probability Conversations
-* The Challenges of Data Science I
-  * Complexity in Action
-  * Selective Attention Bias
-  * Data Theatre
-  * The Art of Statistics
-
--->
-
 \section{Introduction}
 
 \notes{Data science is an emerging discipline. That makes it harder to make clean decisions about what any given individual will need to know to become a data scientist. Those of you who are studying now will be those that define the discipline. As we deploy more data driven decision making in the world, the role will be refined. Until we achieve that refinement, your knowledge needs to be broad based.}
@@ -60,7 +45,6 @@ ipynb: true
 \define{humanAnalogueMachinesShort}
 
 \include{_ml/includes/what-are-large-language-models.md}
-
 
 \notes{But if we can avoid the pitfalls of counterfeit people, this also offers us an opportunity to *psychologically represent* [@Heider:interpersonal58] the machine in a manner where humans can communicate without special training. This in turn offers the opportunity to overcome the challenge of *intellectual debt*.}
 
