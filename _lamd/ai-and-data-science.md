@@ -48,6 +48,8 @@ ipynb: true
 
 \notes{In this lecture we will first continue our theme of how our limitations as humans mean that our analysis of data can be affected, and I will introduce an analogy that should help you understand *how* data science differs significantly from traditional software engineering.}
 
+\include{_software/includes/notutils-software.md}
+\include{_software/includes/mlai-software.md}
 \include{_ml/includes/technical-edition.md}
 
 \include{_ml/includes/statistics-to-deep-learning.md}
@@ -67,7 +69,7 @@ ipynb: true
 \include{_data-science/includes/new-flow-of-information-ham.md}
 
 \include{_psychology/includes/selective-attention-bias.md}
-\define{bmiStepsAnalysis}
+\slides{\define{bmiStepsAnalysis}}
 \include{_data-science/includes/data-inattention-bias.md}
 \notes{In today's lecture we've drilled down further on a difficult aspect of data science. By focusing too much on the data and the technical challenges we face, we can forget the context. But to do data science well, we must not forget the context of the data. We need to pay attention to domain experts and introduce their understanding to our analysis. Above all we must not forget that data is almost always (in the end) about people.}
 
