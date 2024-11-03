@@ -15,8 +15,10 @@ author:
   twitter: lawrennd
   url: http://inverseprobability.com
 time: "10:00"
-youtube: IGRecWhh2Mo
+youtube: KrCQndnDQ7I
 oldyoutube: 
+- code: KrCQndnDQ7I
+  year: 2024
 - code: IGRecWhh2Mo
   year: 2022
 - code: j1MjFd_2U80
