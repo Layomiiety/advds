@@ -37,7 +37,7 @@ ipynb: true
 \include{_software/includes/mlai-software.md}
 \include{_software/includes/pods-software.md}
 \include{_ml/includes/technical-edition.md}
-
+\undef{MAGICCODE}
 \include{_ml/includes/statistics-to-deep-learning.md}
 
 \subsection{What are Large Language Models?}
