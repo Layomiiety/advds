@@ -136,6 +136,10 @@ them easier to manage.</p>
 for the transactions that took place in the year 1995:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Base URL where the dataset is stored </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span></code></pre></div>
 <pre><code># Downloading part 1 from 1995
 file_name_part_1 = &quot;/pp-1995-part1.csv&quot;
 url = base_url + file_name_part_1
@@ -143,7 +147,6 @@ response = requests.get(url)
 if response.status_code == 200:
   with open(&quot;.&quot; + file_name_part_1, &quot;wb&quot;) as file:
     file.write(response.content)
-
 # Downloading part 2 from 1995
 file_name_part_2 = &quot;/pp-1995-part2.csv&quot;
 url = base_url + file_name_part_2
@@ -156,9 +159,11 @@ notebook. You can see that the two pieces of code that download the data
 are quite similar. It makes sense to use a for loop to automate the way
 we access the dataset for the different years. The following code will
 download the data from 1996 to 2010.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base URL where the dataset is stored </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span></code></pre></div>
 <pre><code># File name with placeholders
 file_name = &quot;/pp-&lt;year&gt;-part&lt;part&gt;.csv&quot;
-
 for year in range(1996,2011):
   print (&quot;Downloading data for year: &quot; + str(year))
   for part in range(1,3):
@@ -169,13 +174,13 @@ for year in range(1996,2011):
         file.write(response.content)}</code></pre>
 <p>If we think of reusability, it would be good to create a function
 that can be called from anywhere in your code.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div>
 <p>Now we can call the function to download the data between two given
 years. For example, let’s download the data from 2011 to 2020 by calling
 the defined function.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>download_price_paid_data(<span class="dv">2011</span>, <span class="dv">2020</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>download_price_paid_data(<span class="dv">2011</span>, <span class="dv">2020</span>)</span></code></pre></div>
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Add this function to your fynesse library and download the data from
 2021 to 2024 using your library.</p>
@@ -353,35 +358,35 @@ can access the server without ever showing your password in the
 notebook. This file will also score the URL and port of your database.
 You can get these details from your database connectivity and security
 details.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual, Text, Password</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual, Text, Password</span></code></pre></div>
 <p>If you click <code>Run Interact</code> then the credentials you’ve
 selected will be saved in the <code>yaml</code> file.</p>
 <p>Then, we can read the server credentials using:</p>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;credentials.yaml&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  credentials <span class="op">=</span> yaml.safe_load(<span class="bu">file</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> credentials[<span class="st">&quot;username&quot;</span>]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> credentials[<span class="st">&quot;password&quot;</span>]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> credentials[<span class="st">&quot;url&quot;</span>]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> credentials[<span class="st">&quot;port&quot;</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;credentials.yaml&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  credentials <span class="op">=</span> yaml.safe_load(<span class="bu">file</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>username <span class="op">=</span> credentials[<span class="st">&quot;username&quot;</span>]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>password <span class="op">=</span> credentials[<span class="st">&quot;password&quot;</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> credentials[<span class="st">&quot;url&quot;</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>port <span class="op">=</span> credentials[<span class="st">&quot;port&quot;</span>]</span></code></pre></div>
 <h2 id="sql-commands">SQL Commands</h2>
 <p>We have all the required data to interact with our database server.
 There are mainly two ways how we can do that. The first one is using
 magic SQL commands. For this option, we need to install pymysql and load
 the sql extension:</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pymysql</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext sql</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pymysql</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext sql</span></code></pre></div>
 <p>We can now test our first database server connection using magic SQL.
 The first line establishes the connection and the second one list the
 databases. For now, you should see the databases that the engine has
 installed by default.</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql mariadb<span class="op">+</span>pymysql:<span class="op">//</span>$username:$password<span class="op">@</span>$url?local_infile<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SHOW databases</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql mariadb<span class="op">+</span>pymysql:<span class="op">//</span>$username:$password<span class="op">@</span>$url?local_infile<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SHOW databases</span></code></pre></div>
 <p>This connection also enables the uploading of local files as part of
 the connection (i.e., <code>local_infile=1</code>). We will use this
 property later.</p>
@@ -396,20 +401,20 @@ own database in the server. We will use this relational database to
 store, structure, and access the different datasets we will manipulate
 during this course. We will use SQL code for this and once again magic
 commands:</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>SET SQL_MODE <span class="op">=</span> <span class="st">&quot;NO_AUTO_VALUE_ON_ZERO&quot;</span><span class="op">;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>SET time_zone <span class="op">=</span> <span class="st">&quot;+00:00&quot;</span><span class="op">;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>CREATE DATABASE IF NOT EXISTS `ads_2024` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin<span class="op">;</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SHOW databases</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>SET SQL_MODE <span class="op">=</span> <span class="st">&quot;NO_AUTO_VALUE_ON_ZERO&quot;</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>SET time_zone <span class="op">=</span> <span class="st">&quot;+00:00&quot;</span><span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>CREATE DATABASE IF NOT EXISTS `ads_2024` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SHOW databases</span></code></pre></div>
 <p>After the database is created in our server, we must tell it which
 database we will use. You will need to run this command after you create
 a new connection:</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span></code></pre></div>
 <p>A database is composed of tables where data records are stored in
 rows. The attributes of each record are the columns. We must define an
 <code>schema</code> to create a table in a database. The
@@ -421,59 +426,59 @@ we want to store the UK Price Paid data, we should have a look at <a
 href="https://www.gov.uk/guidance/about-the-price-paid-data#explanations-of-column-headers-in-the-ppd">its
 description first</a>. Also, we should a look at the data. Let’s do that
 for the second semester of 2021.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">&quot;./pp-2021-part2.csv&quot;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(file_name)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>data.info(verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">&quot;./pp-2021-part2.csv&quot;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(file_name)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>data.info(verbose<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 <p>Based on the columns of the dataframe, we should define now the
 equivalent <code>schema</code> of the table in the SQL database. We will
 use once more SQL magic commands to create a table with the equivalent
 <code>schema</code>:</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span><span class="co">: If you run this command after you have uploaded data to the table (in the steps below), you will delete the uploaded data as this command first drops the table if exists (DROP TABLE IF EXISTS `pp_data`;).</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `pp_data`</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `pp_data`<span class="op">;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `pp_data` (</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  `transaction_unique_identifier` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  `price` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  `date_of_transfer` date NOT NULL,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  `postcode` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  `property_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  `new_build_flag` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  `tenure_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  `primary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  `secondary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  `street` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  `locality` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  `town_city` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  `district` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  `county` tinytext COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  `ppd_category_type` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  `record_status` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span><span class="co">: If you run this command after you have uploaded data to the table (in the steps below), you will delete the uploaded data as this command first drops the table if exists (DROP TABLE IF EXISTS `pp_data`;).</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `pp_data`</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `pp_data`<span class="op">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `pp_data` (</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  `transaction_unique_identifier` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  `price` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  `date_of_transfer` date NOT NULL,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  `postcode` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  `property_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  `new_build_flag` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  `tenure_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  `primary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  `secondary_addressable_object_name` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  `street` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  `locality` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  `town_city` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  `district` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  `county` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  `ppd_category_type` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  `record_status` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
 <p>The <code>schema</code> defines an id field in the table (i.e.,
 <code>db_id</code>), which must be unique and will play the role of <a
 href="https://www.geeksforgeeks.org/primary-key-in-dbms/">primary
 key</a>, which is a crucial concept in relational databases. The
 following code sets up the primary key for our table and makes it auto
 increment when a new row (i.e., record) is insterted into the table.</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Primary key <span class="cf">for</span> table `pp_data`</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `pp_data`</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>ADD PRIMARY KEY (`db_id`)<span class="op">;</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `pp_data`</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>MODIFY db_id bigint(<span class="dv">20</span>) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Primary key <span class="cf">for</span> table `pp_data`</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `pp_data`</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>ADD PRIMARY KEY (`db_id`)<span class="op">;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `pp_data`</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>MODIFY db_id bigint(<span class="dv">20</span>) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span></code></pre></div>
 <p>We’ve created our first table in the database with its respective
 primary key. Now we need to populate it. There are different methods to
 do that. <a
@@ -487,32 +492,32 @@ the table, and the format of the CSV file we want to use (i.e.,
 separators, enclosers, termination line characters, etc.)</p>
 <p>The following command uploads the data of the transactions that took
 place in 1995.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql USE `ads_2024`<span class="op">;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;./pp-1995-part1.csv&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;./pp-1995-part2.csv&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql USE `ads_2024`<span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;./pp-1995-part1.csv&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;./pp-1995-part2.csv&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
 <p>If we want to upload the data for all the years, we will need a
 command for each CSV in our dataset. Alternatively, we can use Python
 code together with SQL magic commands as follows:</p>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span><span class="co">: This code will take a long time to finish (i.e., more than 30 minutes) given our dataset&#39;s size. The print informs the uploading progress by year.</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1996</span>,<span class="dv">2025</span>):</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span> (<span class="st">&quot;Uploading data for year: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(year))</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> part <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">3</span>):</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    file_name <span class="op">=</span> <span class="st">&quot;./pp-&quot;</span> <span class="op">+</span> <span class="bu">str</span>(year) <span class="op">+</span> <span class="st">&quot;-part&quot;</span> <span class="op">+</span> <span class="bu">str</span>(part) <span class="op">+</span> <span class="st">&quot;.csv&quot;</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;$file_name&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span><span class="co">: This code will take a long time to finish (i.e., more than 30 minutes) given our dataset&#39;s size. The print informs the uploading progress by year.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1996</span>,<span class="dv">2025</span>):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span> (<span class="st">&quot;Uploading data for year: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(year))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> part <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">3</span>):</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    file_name <span class="op">=</span> <span class="st">&quot;./pp-&quot;</span> <span class="op">+</span> <span class="bu">str</span>(year) <span class="op">+</span> <span class="st">&quot;-part&quot;</span> <span class="op">+</span> <span class="bu">str</span>(part) <span class="op">+</span> <span class="st">&quot;.csv&quot;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">%</span>sql LOAD DATA LOCAL INFILE <span class="st">&quot;$file_name&quot;</span> INTO TABLE `pp_data` FIELDS TERMINATED BY <span class="st">&#39;,&#39;</span> OPTIONALLY ENCLOSED by <span class="st">&#39;&quot;&#39;</span> LINES STARTING BY <span class="st">&#39;&#39;</span> TERMINATED BY <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span><span class="op">;</span></span></code></pre></div>
 <p>Now that we uploaded the data, we can retrieve it from the table. We
 can select the first 5 elements in the <code>pp_data</code> using this
 command:</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM `pp_data` LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM `pp_data` LIMIT <span class="dv">5</span><span class="op">;</span></span></code></pre></div>
 <p>We can also count the number of rows in our table. It can take more
 than 5 minutes to finish. There are almost 30 million of records in the
 dataset.</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql select count(<span class="op">*</span>) <span class="im">from</span> `pp_data`<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql select count(<span class="op">*</span>) <span class="im">from</span> `pp_data`<span class="op">;</span></span></code></pre></div>
 <h2 id="postal-codes-dataset">Postal Codes Dataset</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
@@ -536,88 +541,62 @@ class="uri">https://www.getthedata.com/downloads/open_postcode_geo.csv.zip</a>.
 It will need to be unzipped before use.</p>
 <p>You may find the following schema useful for the postcode data
 (developed by Christian and Neil)</p>
-<table style="width:4%;">
-<colgroup>
-<col style="width: 4%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>– Table structure for table <code>postcode_data</code></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>DROP TABLE IF EXISTS <code>postcode_data</code>; CREATE TABLE IF NOT
-EXISTS <code>postcode_data</code> ( <code>postcode</code> varchar(8)
-COLLATE utf8_bin NOT NULL, <code>status</code> enum(‘live’,‘terminated’)
-NOT NULL, <code>usertype</code> enum(‘small’, ‘large’) NOT NULL,
-<code>easting</code> int unsigned, <code>northing</code> int unsigned,
-<code>positional_quality_indicator</code> int NOT NULL,
-<code>country</code> enum(‘England’, ‘Wales’, ‘Scotland’, ‘Northern
-Ireland’, ‘Channel Islands’, ‘Isle of Man’) NOT NULL,
-<code>latitude</code> decimal(11,8) NOT NULL, <code>longitude</code>
-decimal(10,8) NOT NULL, <code>postcode_no_space</code> tinytext COLLATE
-utf8_bin NOT NULL, <code>postcode_fixed_width_seven</code> varchar(7)
-COLLATE utf8_bin NOT NULL, <code>postcode_fixed_width_eight</code>
-varchar(8) COLLATE utf8_bin NOT NULL, <code>postcode_area</code>
-varchar(2) COLLATE utf8_bin NOT NULL, <code>postcode_district</code>
-varchar(4) COLLATE utf8_bin NOT NULL, <code>postcode_sector</code>
-varchar(6) COLLATE utf8_bin NOT NULL, <code>outcode</code> varchar(4)
-COLLATE utf8_bin NOT NULL, <code>incode</code> varchar(3) COLLATE
-utf8_bin NOT NULL, <code>db_id</code> bigint(20) unsigned NOT NULL )
-DEFAULT CHARSET=utf8 COLLATE=utf8_bin;</td>
-</tr>
-<tr class="even">
-<td>And again you’ll want to set up a primary key for the new
-table.</td>
-</tr>
-<tr class="odd">
-<td>ALTER TABLE <code>postcode_data</code> ADD PRIMARY KEY
-(<code>db_id</code>);</td>
-</tr>
-<tr class="even">
-<td>ALTER TABLE <code>postcode_data</code>; MODIFY <code>db_id</code>
-bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;</td>
-</tr>
-<tr class="odd">
-<td>And you can load the CSV file into the table using this
-command.</td>
-</tr>
-<tr class="even">
-<td>LOAD DATA LOCAL INFILE ‘open_postcode_geo.csv’ INTO TABLE
-<code>postcode_data</code> FIELDS TERMINATED BY ‘,’ OPTIONALLY ENCLOSED
-by ‘“’ LINES STARTING BY ’’ TERMINATED BY ‘’;</td>
-</tr>
-<tr class="odd">
-<td>### Exercise 2</td>
-</tr>
-<tr class="even">
-<td>Upload the postcode dataset to your database.</td>
-</tr>
-<tr class="odd">
-<td>## Joining Tables</td>
-</tr>
-<tr class="even">
-<td></td>
-</tr>
-<tr class="odd">
-<td>When we have two tables with data tha describe the same object, then
+<div class="sourceCode" id="cb24"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `postcode_data`</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `postcode_data`<span class="op">;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `postcode_data` (</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  `postcode` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  `status` enum(<span class="st">&#39;live&#39;</span>,<span class="st">&#39;terminated&#39;</span>) NOT NULL,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  `usertype` enum(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;large&#39;</span>) NOT NULL,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  `easting` <span class="bu">int</span> unsigned,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  `northing` <span class="bu">int</span> unsigned,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  `positional_quality_indicator` <span class="bu">int</span> NOT NULL,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  `country` enum(<span class="st">&#39;England&#39;</span>, <span class="st">&#39;Wales&#39;</span>, <span class="st">&#39;Scotland&#39;</span>, <span class="st">&#39;Northern Ireland&#39;</span>, <span class="st">&#39;Channel Islands&#39;</span>, <span class="st">&#39;Isle of Man&#39;</span>) NOT NULL,</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  `latitude` decimal(<span class="dv">11</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  `longitude` decimal(<span class="dv">10</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  `postcode_no_space` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  `postcode_fixed_width_seven` varchar(<span class="dv">7</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  `postcode_fixed_width_eight` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  `postcode_area` varchar(<span class="dv">2</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  `postcode_district` varchar(<span class="dv">4</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  `postcode_sector` varchar(<span class="dv">6</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  `outcode` varchar(<span class="dv">4</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>  `incode` varchar(<span class="dv">3</span>)  COLLATE utf8_bin NOT NULL,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin<span class="op">;</span></span></code></pre></div>
+<p>And again you’ll want to set up a primary key for the new table.</p>
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `postcode_data`</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ADD PRIMARY KEY (`db_id`)<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `postcode_data`<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>MODIFY `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span></code></pre></div>
+<h3 id="exercise-2">Exercise 2</h3>
+<p>Upload the postcode dataset to your database using the LOAD DATA
+LOCAL INFILE command.</p>
+<h2 id="joining-tables">Joining Tables</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_access/includes/table-joins.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_access/includes/table-joins.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>When we have two tables with data tha describe the same object, then
 it makes sense to join the tables together to enrich our knowledge about
 the object. For example, while the <code>pp_data</code> tell us about
 the transactions a house have been involved, the
 <code>postcode_data</code> tell us details about the location of the
 house. By joining both, we could answer more interesting questions like
-what are the coordinates of the most expensive house in 2024?</td>
-</tr>
-<tr class="even">
-<td>The join of the tables must be done by matching the columns the
+what are the coordinates of the most expensive house in 2024?</p>
+<p>The join of the tables must be done by matching the columns the
 tables share. In this case, the <code>pp_data</code> and the
 <code>postcode_data</code> tables share the column
 <code>postcode</code>. This operation can take long time because the
-number of records in each database is huge.</td>
-</tr>
-<tr class="odd">
-<td>You will find the issue of operations taking too long when handling
+number of records in each database is huge.</p>
+<p>You will find the issue of operations taking too long when handling
 large data sets in different scenarios. An appropriate strategy to
 overcome such issues is to index the tables. Indexing is a way to
 organise the data so the queries are more efficient time-wise. Now the
@@ -626,122 +605,128 @@ depends on the columns we are using in the SQL operations. In the join
 case, we are selecting and matching records in each table using the
 <code>postcode</code> column. It makes sense then to create an index for
 these columns. The following code indexes the table <code>pp_data</code>
-by <code>postcode</code>.</td>
-</tr>
-<tr class="even">
-<td><code>{.python} # WARNING: Giving the size of the table, this operation takes around 8 minutes. # If your database is not responsive, check the status of your database on the AWS dashboard. You can restart the database from the dashboard. %%sql USE `ads_2024`; CREATE INDEX idx_pp_postcode ON pp_data(postcode);</code>
-Let’s try our join the tables for year 2024 now:</td>
-</tr>
-<tr class="odd">
-<td>### Exercise 3</td>
-</tr>
-<tr class="even">
-<td>The index made a difference in the time the join operation took to
+by <code>postcode</code>.</p>
+<div class="sourceCode" id="cb26"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span><span class="co">: Giving the size of the table, this operation takes around 8 minutes.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># If your database is not responsive, check the status of your database on the AWS dashboard. You can restart the database from the dashboard.</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>CREATE INDEX idx_pp_postcode ON pp_data(postcode)<span class="op">;</span></span></code></pre></div>
+<p>Let’s try our join the tables for year 2024 now:</p>
+<div class="sourceCode" id="cb27"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>select <span class="op">*</span> <span class="im">from</span> pp_data <span class="im">as</span> pp inner join postcode_data <span class="im">as</span> po on pp.postcode <span class="op">=</span> po.postcode where pp.date_of_transfer BETWEEN <span class="st">&#39;2024-01-01&#39;</span> AND <span class="st">&#39;2024-12-31&#39;</span> limit <span class="dv">5</span><span class="op">;</span></span></code></pre></div>
+<h3 id="exercise-3">Exercise 3</h3>
+<p>The index made a difference in the time the join operation took to
 finish. Write the code to index the table <code>postcode_data</code> by
-<code>postcode</code>.</td>
-</tr>
-<tr class="odd">
-<td>And, let’s try the join again:</td>
-</tr>
-<tr class="even">
-<td><code>{.python} %%sql USE `ads_2024`; select * from pp_data as pp inner join postcode_data as po on pp.postcode = po.postcode where pp.date_of_transfer BETWEEN '2024-01-01' AND '2024-12-31' limit 5;</code></td>
-</tr>
-<tr class="odd">
-<td>### Exercise 4</td>
-</tr>
-<tr class="even">
-<td>Do you see any difference after adding the new index? Why?</td>
-</tr>
-<tr class="odd">
-<td>## Database Python Client</td>
-</tr>
-<tr class="even">
-<td>Now let’s focus on the second way of interacting with the database
+<code>postcode</code>.</p>
+<p>And, let’s try the join again:</p>
+<div class="sourceCode" id="cb28"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>select <span class="op">*</span> <span class="im">from</span> pp_data <span class="im">as</span> pp inner join postcode_data <span class="im">as</span> po on pp.postcode <span class="op">=</span> po.postcode where pp.date_of_transfer BETWEEN <span class="st">&#39;2024-01-01&#39;</span> AND <span class="st">&#39;2024-12-31&#39;</span> limit <span class="dv">5</span><span class="op">;</span></span></code></pre></div>
+<h3 id="exercise-4">Exercise 4</h3>
+<p>Do you see any difference after adding the new index? Why?</p>
+<h2 id="database-python-client">Database Python Client</h2>
+<p>Now let’s focus on the second way of interacting with the database
 server. We can use Python code to create a client that communicates with
 our database server. For this, we need to install the following
-libraries.</td>
-</tr>
-<tr class="odd">
-<td><code>{.python} %pip install ipython-sql</code></td>
-</tr>
-<tr class="even">
-<td><code>{.python} %pip install PyMySQL</code></td>
-</tr>
-<tr class="odd">
-<td>Let’s create a method in Python to establish a database connection
-wherever we like. It should look like the following code:</td>
-</tr>
-<tr class="even">
-<td><code>{.python} import pymysql</code></td>
-</tr>
-<tr class="odd">
-<td>Please add the code above to your fynesse library. We can now call
-this function to get a connection:</td>
-</tr>
-<tr class="even">
-<td><code>{.python} #Write your code to establish a connection using your fynesee library</code></td>
-</tr>
-<tr class="odd">
-<td>Now let’s define a Python method that uploads to a table the data
+libraries.</p>
+<div class="sourceCode" id="cb29"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install ipython<span class="op">-</span>sql</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install PyMySQL</span></code></pre></div>
+<p>Let’s create a method in Python to establish a database connection
+wherever we like. It should look like the following code:</p>
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymysql</span></code></pre></div>
+<p>Please add the code above to your fynesse library. We can now call
+this function to get a connection:</p>
+<div class="sourceCode" id="cb32"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Write your code to establish a connection using your fynesee library</span></span></code></pre></div>
+<p>Now let’s define a Python method that uploads to a table the data
 product of the join operation between the tables <code>pp_data</code>
 and <code>postcode_data</code>. For this, we first need to create the
-table that will store this data.</td>
-</tr>
-<tr class="even">
-<td>``<code>{.python} %%sql USE</code>ads_2024`;</td>
-</tr>
-</tbody>
-</table>
-<h2 id="table-structure-for-table-prices_coordinates_data">– Table
-structure for table <code>prices_coordinates_data</code></h2>
-<p>DROP TABLE IF EXISTS <code>prices_coordinates_data</code>; CREATE
-TABLE IF NOT EXISTS <code>prices_coordinates_data</code> (
-<code>price</code> int(10) unsigned NOT NULL,
-<code>date_of_transfer</code> date NOT NULL, <code>postcode</code>
-varchar(8) COLLATE utf8_bin NOT NULL, <code>property_type</code>
-varchar(1) COLLATE utf8_bin NOT NULL, <code>new_build_flag</code>
-varchar(1) COLLATE utf8_bin NOT NULL, <code>tenure_type</code>
-varchar(1) COLLATE utf8_bin NOT NULL, <code>locality</code> tinytext
-COLLATE utf8_bin NOT NULL, <code>town_city</code> tinytext COLLATE
-utf8_bin NOT NULL, <code>district</code> tinytext COLLATE utf8_bin NOT
-NULL, <code>county</code> tinytext COLLATE utf8_bin NOT NULL,
-<code>country</code> enum(‘England’, ‘Wales’, ‘Scotland’, ‘Northern
-Ireland’, ‘Channel Islands’, ‘Isle of Man’) NOT NULL,
-<code>latitude</code> decimal(11,8) NOT NULL, <code>longitude</code>
-decimal(10,8) NOT NULL, <code>db_id</code> bigint(20) unsigned NOT NULL
-) DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;</p>
-<pre><code>
-We should define the primary key for this table too.
-
-```{.python}
-%%sql
-ALTER TABLE `prices_coordinates_data`
-ADD PRIMARY KEY (`db_id`);
-
-ALTER TABLE `prices_coordinates_data`
-MODIFY `db_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;</code></pre>
+table that will store this data.</p>
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Table structure <span class="cf">for</span> table `prices_coordinates_data`</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="op">--</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>DROP TABLE IF EXISTS `prices_coordinates_data`<span class="op">;</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>CREATE TABLE IF NOT EXISTS `prices_coordinates_data` (</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  `price` <span class="bu">int</span>(<span class="dv">10</span>) unsigned NOT NULL,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  `date_of_transfer` date NOT NULL,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  `postcode` varchar(<span class="dv">8</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  `property_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  `new_build_flag` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  `tenure_type` varchar(<span class="dv">1</span>) COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  `locality` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  `town_city` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  `district` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  `county` tinytext COLLATE utf8_bin NOT NULL,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  `country` enum(<span class="st">&#39;England&#39;</span>, <span class="st">&#39;Wales&#39;</span>, <span class="st">&#39;Scotland&#39;</span>, <span class="st">&#39;Northern Ireland&#39;</span>, <span class="st">&#39;Channel Islands&#39;</span>, <span class="st">&#39;Isle of Man&#39;</span>) NOT NULL,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  `latitude` decimal(<span class="dv">11</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  `longitude` decimal(<span class="dv">10</span>,<span class="dv">8</span>) NOT NULL,</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>) DEFAULT CHARSET<span class="op">=</span>utf8 COLLATE<span class="op">=</span>utf8_bin AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span> <span class="op">;</span></span></code></pre></div>
+<p>We should define the primary key for this table too.</p>
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `prices_coordinates_data`</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>ADD PRIMARY KEY (`db_id`)<span class="op">;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>ALTER TABLE `prices_coordinates_data`</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>MODIFY `db_id` bigint(<span class="dv">20</span>) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT<span class="op">=</span><span class="dv">1</span><span class="op">;</span></span></code></pre></div>
 <p>Indexing the table <code>pp_data</code> by date will be useful for
 populating the <code>prices_coordinates_data</code>. This index can take
 around 8 minutes to finish.</p>
-<div class="sourceCode" id="cb23"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>CREATE INDEX idx_pp_date_transfer ON pp_data(date_of_transfer)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>USE `ads_2024`<span class="op">;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>CREATE INDEX idx_pp_date_transfer ON pp_data(date_of_transfer)<span class="op">;</span></span></code></pre></div>
 <p>Now that the table exists in our database, let’s create a method for
 uploading the join data. This method will upload the data for a given
 year and will use the logic we have used before but in Python code.</p>
-<div class="sourceCode" id="cb24"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span></code></pre></div>
 <p>Now, lets upload the joined data for 2024. This upload is going to
 take long time given the size of our datasets:</p>
-<div class="sourceCode" id="cb26"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>housing_upload_join_data(conn, <span class="dv">2024</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>housing_upload_join_data(conn, <span class="dv">2024</span>)</span></code></pre></div>
 <h3 id="exercise-5">Exercise 5</h3>
 <p>Add the <code>housing_upload_join_data</code> function to your
 fynesse library and write the code to upload the joined data for
 2023.</p>
+<p>To finalise this lab, let’s have a look at the structure of your
+database running the following code:</p>
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> <span class="op">%</span>sql SHOW TABLES<span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> tables:</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    table_name <span class="op">=</span> row[<span class="dv">0</span>]</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Table: </span><span class="sc">{</span>table_name<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    table_status <span class="op">=</span> <span class="op">%</span>sql SHOW TABLE STATUS LIKE <span class="st">&#39;</span><span class="sc">{table_name}</span><span class="st">&#39;</span><span class="op">;</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    approx_row_count <span class="op">=</span> table_status[<span class="dv">0</span>][<span class="dv">4</span>] <span class="cf">if</span> table_status <span class="cf">else</span> <span class="st">&#39;Unable to fetch row count&#39;</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Approx Row Count:&quot;</span>, approx_row_count<span class="op">//</span><span class="dv">100000</span><span class="op">/</span><span class="dv">10</span>, <span class="st">&quot;M&quot;</span>)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    first_5_rows <span class="op">=</span> <span class="op">%</span>sql SELECT <span class="op">*</span> FROM `{table_name}` LIMIT <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(first_5_rows)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> <span class="op">%</span>sql SHOW INDEX FROM `{table_name}`<span class="op">;</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> indices:</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Indices:&quot;</span>)</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index <span class="kw">in</span> indices:</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot; - </span><span class="sc">{</span>index[<span class="dv">2</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>index[<span class="dv">10</span>]<span class="sc">}</span><span class="ss">): Column </span><span class="sc">{</span>index[<span class="dv">4</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">No indices set on this table.&quot;</span>)</span></code></pre></div>
+<h3 id="exercise-6">Exercise 6</h3>
+<p>Write the output of the above code:</p>
 <h2 id="summary">Summary</h2>
 <p>In this practical, we have explored how to persist a couple of
 datasets in a relational database to facilitate future access. We
