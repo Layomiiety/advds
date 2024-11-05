@@ -11,14 +11,14 @@ venue: LT2, William Gates Building
 author:
 - family: Cabrera
   given: Christian
-  gscholar: 9yQ1tQoAAAAJ
+  gscholar: NITUwmcAAAAJ
   institute: University of Cambridge
   url: https://cabrerac.github.io/ 
 time: "10:00"
 date: 2024-11-06
 pdfslides: engineering-data-science.pdf
 transition: None
-reveal: false
+reveal: true
 ipynb: false
 ---
 
