@@ -25,7 +25,7 @@ author:
   url: http://inverseprobability.com
 time: "15:00"  
 postsdir: ../../../mlatcl/advds/_practicals/
-date: 2024-11-06
+date: 2024-11-05
 transition: None
 ipynb: true
 ---
