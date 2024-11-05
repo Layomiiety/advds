@@ -137,23 +137,22 @@ for the transactions that took place in the year 1995:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Base URL where the dataset is stored </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Downloading part 1 from 1995</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    file_name_part_1 <span class="op">=</span> <span class="st">&quot;/pp-1995-part1.csv&quot;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> base_url <span class="op">+</span> file_name_part_1</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name_part_1, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(response.content)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Downloading part 2 from 1995</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    file_name_part_2 <span class="op">=</span> <span class="st">&quot;/pp-1995-part2.csv&quot;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> base_url <span class="op">+</span> file_name_part_2</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name_part_2, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(response.content)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base URL where the dataset is stored</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading part 1 from 1995</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>file_name_part_1 <span class="op">=</span> <span class="st">&quot;/pp-1995-part1.csv&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> base_url <span class="op">+</span> file_name_part_1</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name_part_1, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(response.content)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading part 2 from 1995</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>file_name_part_2 <span class="op">=</span> <span class="st">&quot;/pp-1995-part2.csv&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> base_url <span class="op">+</span> file_name_part_2</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name_part_2, <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(response.content)</span></code></pre></div>
 <p>The data is downloaded as CSV files in the files explorer of this
 notebook. You can see that the two pieces of code that download the data
 are quite similar. It makes sense to use a for loop to automate the way
@@ -161,17 +160,17 @@ we access the dataset for the different years. The following code will
 download the data from 1996 to 2010.</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base URL where the dataset is stored </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># File name with placeholders</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    file_name <span class="op">=</span> <span class="st">&quot;/pp-&lt;year&gt;-part&lt;part&gt;.csv&quot;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1996</span>,<span class="dv">2011</span>):</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span> (<span class="st">&quot;Downloading data for year: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(year))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> part <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">3</span>):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        url <span class="op">=</span> base_url <span class="op">+</span> file_name.replace(<span class="st">&quot;&lt;year&gt;&quot;</span>, <span class="bu">str</span>(year)).replace(<span class="st">&quot;&lt;part&gt;&quot;</span>, <span class="bu">str</span>(part))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(url)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>          <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name.replace(<span class="st">&quot;&lt;year&gt;&quot;</span>, <span class="bu">str</span>(year)).replace(<span class="st">&quot;&lt;part&gt;&quot;</span>, <span class="bu">str</span>(part)), <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">file</span>.write(response.content)</span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://prod.publicdata.landregistry.gov.uk.s3-website-eu-west-1.amazonaws.com&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># File name with placeholders</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>file_name <span class="op">=</span> <span class="st">&quot;/pp-&lt;year&gt;-part&lt;part&gt;.csv&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1996</span>,<span class="dv">2011</span>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span> (<span class="st">&quot;Downloading data for year: &quot;</span> <span class="op">+</span> <span class="bu">str</span>(year))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> part <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">3</span>):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> base_url <span class="op">+</span> file_name.replace(<span class="st">&quot;&lt;year&gt;&quot;</span>, <span class="bu">str</span>(year)).replace(<span class="st">&quot;&lt;part&gt;&quot;</span>, <span class="bu">str</span>(part))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;.&quot;</span> <span class="op">+</span> file_name.replace(<span class="st">&quot;&lt;year&gt;&quot;</span>, <span class="bu">str</span>(year)).replace(<span class="st">&quot;&lt;part&gt;&quot;</span>, <span class="bu">str</span>(part)), <span class="st">&quot;wb&quot;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">file</span>.write(response.content)</span></code></pre></div>
 <p>If we think of reusability, it would be good to create a function
 that can be called from anywhere in your code.</p>
 <div class="sourceCode" id="cb4"><pre
