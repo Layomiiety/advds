@@ -18,11 +18,17 @@ time: "10:00"
 date: 2024-11-06
 pdfslides: engineering-data-science.pdf
 transition: None
-reveal: true
+reveal: false
 ipynb: false
 ---
 
+\include{_software/includes/notutils-software.md}
+\include{_data-science/includes/data-science-challenges.md}
+\include{_data-science/includes/real-world-deployments.md}
+\include{_systems/includes/systems-engineering-principles.md}
+\include{_systems/includes/systems-engineering-practice.md}
+\include{_data-science/includes/engineering-data-science-framework.md}
 
-We begin by examining three key challenges: bias, complexity and intellectual debt. Each of these challenges impacts solution deployment, maintenance and interpretability. 
+\thanks
 
-We emphasise that while model development is an important part of the pipeline, focussing only on model accuracy can cause us to overlook real-world deployment challenges. 
+\references
