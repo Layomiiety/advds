@@ -24,6 +24,8 @@ ipynb: false
 
 \include{_software/includes/notutils-software.md}
 \include{_data-science/includes/data-science-challenges-systems.md}
+\newslide{}
+\figure{\includediagram{\diagramsDir/data-science/data-engineering-principles}{90%}}{The principles associated with data engineering.}{data-engineering-principles}
 \include{_data-science/includes/real-world-deployments.md}
 \include{_systems/includes/systems-engineering-principles.md}
 \include{_systems/includes/systems-engineering-practice.md}
