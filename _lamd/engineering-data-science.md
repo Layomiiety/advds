@@ -1,7 +1,7 @@
 ---
 week: 4
 session: 3
-featured_image: assets/images/a-data-science-process.png
+featured_image: assets/images/154937-ouy119-839-copy.jpg
 title: "Engineering Data Science"
 abstract:  |
   In this lecture we explore the intersection between systems engineering principles and data science. This provides a framework that emphasizes the importance of context in addressing modern data science challenges. 
