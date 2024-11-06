@@ -23,7 +23,7 @@ ipynb: false
 ---
 
 \include{_software/includes/notutils-software.md}
-\include{_data-science/includes/data-science-challenges.md}
+\include{_data-science/includes/data-science-challenges-systems.md}
 \include{_data-science/includes/real-world-deployments.md}
 \include{_systems/includes/systems-engineering-principles.md}
 \include{_systems/includes/systems-engineering-practice.md}
