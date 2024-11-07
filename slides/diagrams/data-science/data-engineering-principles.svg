@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+    <!-- Terms positioned around the center -->
+    <image 
+    href="./154937-ouy119-839-copy.png"
+    x="50" 
+    y="-200" 
+    width="1000" 
+    height="1200"
+    preserveAspectRatio="xMidYMid meet"
+    />
+    <g font-family="Arial" font-weight="bold" fill="#37578C">
+        <!-- Top term -->
+        <text x="600" y="100" text-anchor="middle" font-size="48">Alignment</text>
+        
+        <!-- Right side terms -->
+        <text x="1000" y="200" text-anchor="start" font-size="48">Inclusiveness</text>
+        <text x="1000" y="400" text-anchor="start" font-size="48">Fairness</text>
+        <text x="1000" y="600" text-anchor="start" font-size="48">Accountability</text>
+        
+        <!-- Left side terms -->
+        <text x="200" y="200" text-anchor="end" font-size="48">Interpretability</text>
+        <text x="200" y="400" text-anchor="end" font-size="48">Sustainability</text>
+        
+        <!-- Bottom term -->
+        <text x="600" y="700" text-anchor="middle" font-size="48">Maintainability</text>
+    </g>
+
+    <!-- Source attribution -->
+    <g font-family="Arial" fill="#666">
+        <text x="440" y="750" font-size="14">Source:</text>
+        <text x="500" y="750" font-size="14" fill="#37578C">https://www.freepik.com/free-photos-vectors/society</text>
+    </g>
+</svg>

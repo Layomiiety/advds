@@ -34,6 +34,8 @@ reveal: true
 ipynb: true
 ---
 
+<!-- Some visualisation dataset examples from Cornell: https://github.com/kuleshov/cornell-cs5785-2024-applied-ml/blob/main/slides/lecture11-mds-tsne.ipynb-->
+
 \include{_visualization/includes/visualization-motivation.md}
 \include{_data-science/includes/data-representation.md}
 
