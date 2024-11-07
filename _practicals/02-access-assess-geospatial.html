@@ -66,7 +66,7 @@ geographic data enabling better informed data analysis. Access to the
 price paid database is needed to complete some of the below exercises.
 You are asked to write reusable code that will help you in the
 assessment.</p>
-<h2 id="accessing-open-stree-maps">Accessing Open Stree Maps</h2>
+<h2 id="accessing-open-street-maps">Accessing Open Street Maps</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span
 class="editsection"
@@ -204,68 +204,35 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a h
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get place boundary related to the place name as a geodataframe</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> ox.geocode_to_gdf(place_name)</span></code></pre></div>
 <p>Which we can then render as follows.</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">--</span>upgrade matplotlib</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the footprint</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>area.plot(ax<span class="op">=</span>ax, facecolor<span class="op">=</span><span class="st">&quot;white&quot;</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot street edges</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>edges.plot(ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="dv">1</span>, edgecolor<span class="op">=</span><span class="st">&quot;dimgray&quot;</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([west, east])</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([south, north])</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;longitude&quot;</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&quot;latitude&quot;</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all POIs</span></span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>pois.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, markersize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a subset of the POIs (e.g., tourist places)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the footprint</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>area.plot(ax<span class="op">=</span>ax, facecolor<span class="op">=</span><span class="st">&quot;white&quot;</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot street edges</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>edges.plot(ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="dv">1</span>, edgecolor<span class="op">=</span><span class="st">&quot;dimgray&quot;</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([west, east])</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([south, north])</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">&quot;longitude&quot;</span>)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">&quot;latitude&quot;</span>)</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot tourist places</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>tourist_places <span class="op">=</span> pois[pois.tourism.notnull()]</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>tourist_places.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>, alpha<span class="op">=</span><span class="dv">1</span>, markersize<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div>
 <p>We have the POI information on all tourist places structured in a
 geodataframe. To work with them in a machine learning algorithm, it will
 be easier to convert them to a pandas DataFrame.</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pois_df <span class="op">=</span> pd.DataFrame(pois)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pois_df[<span class="st">&#39;latitude&#39;</span>] <span class="op">=</span> pois_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row.geometry.centroid.y, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>pois_df[<span class="st">&#39;longitude&#39;</span>] <span class="op">=</span> pois_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row.geometry.centroid.x, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>tourist_places_df <span class="op">=</span> pois_df[pois_df.tourism.notnull()]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(tourist_places_df))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>tourist_places_df</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>poi_counts <span class="op">=</span> {}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>pois_df <span class="op">=</span> pd.DataFrame(pois)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>pois_df[<span class="st">&#39;latitude&#39;</span>] <span class="op">=</span> pois_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row.geometry.centroid.y, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>pois_df[<span class="st">&#39;longitude&#39;</span>] <span class="op">=</span> pois_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row.geometry.centroid.x, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>tourist_places_df <span class="op">=</span> pois_df[pois_df.tourism.notnull()]</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(tourist_places_df))</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>tourist_places_df</span></code></pre></div>
-<p>poi_counts = {}</p>
-<p>poi_types =[“amenity”, “historic”, “leisure”, “shop”, “tourism”,
-“religion”, “memorial”]</p>
-<p>for tag in poi_types: if tag in pois_df.columns: poi_counts[tag] =
-pois_df[tag].notnull().sum() else: poi_counts[tag] = 0</p>
-<p>poi_counts_df = pd.DataFrame(list(poi_counts.items()), columns=[‘POI
-Type’, ‘Count’])</p>
-<p>poi_counts_df</p>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>poi_types <span class="op">=</span>[<span class="st">&quot;amenity&quot;</span>, <span class="st">&quot;historic&quot;</span>, <span class="st">&quot;leisure&quot;</span>, <span class="st">&quot;shop&quot;</span>, <span class="st">&quot;tourism&quot;</span>, <span class="st">&quot;religion&quot;</span>, <span class="st">&quot;memorial&quot;</span>]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag <span class="kw">in</span> poi_types:</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> tag <span class="kw">in</span> pois_df.columns:</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    poi_counts[tag] <span class="op">=</span> pois_df[tag].notnull().<span class="bu">sum</span>()</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    poi_counts[tag] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>poi_counts_df <span class="op">=</span> pd.DataFrame(<span class="bu">list</span>(poi_counts.items()), columns<span class="op">=</span>[<span class="st">&#39;POI Type&#39;</span>, <span class="st">&#39;Count&#39;</span>])</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>poi_counts_df</span></code></pre></div>
 <h2 id="assessing-the-available-openstreetmap-features">Assessing the
 Available OpenStreetMap Features</h2>
 <div style="text-align:right">
@@ -360,8 +327,8 @@ price dataset. This is a data linking and validation exercise.</p>
 <p>The latitude and longitude of Cambridge are as follows:</p>
 <div class="sourceCode" id="cb22"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>place_name <span class="op">=</span> <span class="st">&quot;Cambridge&quot;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    latitude <span class="op">=</span> <span class="fl">52.1951</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    longitude <span class="op">=</span> <span class="fl">0.1313</span></span></code></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>latitude <span class="op">=</span> <span class="fl">52.1951</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>longitude <span class="op">=</span> <span class="fl">0.1313</span></span></code></pre></div>
 <p>We want to execute an SQL query on your database to select all houses
 in a 1km x 1km region around the centre of Cambridge that have been part
 of housing transactions since 2020.</p>
